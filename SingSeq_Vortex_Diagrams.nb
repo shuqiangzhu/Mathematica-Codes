@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[    268216,       6390]
-NotebookOptionsPosition[    263450,       6327]
-NotebookOutlinePosition[    263820,       6343]
-CellTagsIndexPosition[    263777,       6340]
+NotebookDataLength[    267302,       6453]
+NotebookOptionsPosition[    262538,       6390]
+NotebookOutlinePosition[    262905,       6406]
+CellTagsIndexPosition[    262862,       6403]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -24,7 +24,7 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"Version", " ", 
      RowBox[{
-      RowBox[{"2023", "/", "12"}], "/", "20"}], " ", "by", " ", "Shuqiang", 
+      RowBox[{"2024", "/", "11"}], "/", "18"}], " ", "by", " ", "Shuqiang", 
      " ", "Zhu"}], ",", 
     RowBox[{
     "Xiang", " ", "Yu", " ", "at", "  ", "Southwestern", " ", "University", 
@@ -96,9 +96,14 @@ Cell[BoxData[
        "we", " ", "just", " ", "write", " ", "the", " ", "algorithm", " ", 
         "which", " ", "utomates", " ", "the", " ", "identification", " ", 
         "of", " ", "diagrams", " ", "for", " ", 
-        RowBox[{"s", ".", "s"}]}], ".."}], " ", "We", " ", "would", " ", 
-      "like", " ", "to", " ", "thank", " ", "the", " ", "help", " ", "from", 
-      " ", "Kuo"}], "-", 
+        RowBox[{"s", ".", "s"}]}], ".."}], " ", "\[IndentingNewLine]", "We", 
+      " ", "have", " ", "revised", " ", "the", " ", "manner", " ", "of", " ", 
+      "sketching", " ", "such", " ", "that", " ", "the", " ", "diagrams", " ",
+       "are", " ", "really", " ", "two"}], "-", 
+     RowBox[{
+      RowBox[{"colored", ".", " ", "We"}], " ", "would", " ", "like", " ", 
+      "to", " ", "thank", " ", "the", " ", "help", " ", "from", " ", "Kuo"}], 
+     "-", 
      RowBox[{
      "Chang", " ", "Chen", " ", "during", " ", "the", " ", "writing", " ", 
       "of", " ", "this", " ", 
@@ -119,7 +124,7 @@ Cell[BoxData[
        "configurations", " ", "with", " ", "n", " ", 
        RowBox[{"vortices", ".", " ", "\[IndentingNewLine]", "input"}]}]}], 
      ":", " ", 
-     RowBox[{"the", " ", "unmber", " ", "of", " ", "bodies"}]}], ";", "  ", 
+     RowBox[{"the", " ", "unmber", " ", "of", " ", "vortices"}]}], ";", "  ", 
     RowBox[{"output", ":", " ", "diagrams"}]}], " ", "*)"}], 
   "\[IndentingNewLine]", "\[IndentingNewLine]", 
   RowBox[{
@@ -3592,6 +3597,25 @@ each class: \>\"", ",", " ", "Str2", ",", " ",
       "\[IndentingNewLine]", "\[IndentingNewLine]", 
       RowBox[{"(*", " ", 
        RowBox[{"BEGIN", " ", "DRAWING", " ", "DIAGRAMS"}], " ", "*)"}], 
+      "\[IndentingNewLine]", 
+      RowBox[{"redcolor", "=", 
+       RowBox[{"RGBColor", "[", 
+        RowBox[{"1", ",", "0.15", ",", "0.15"}], "]"}]}], ";", "\n", "    ", 
+      RowBox[{"bluecolor", "=", 
+       RowBox[{"RGBColor", "[", 
+        RowBox[{"0", ",", "0.05", ",", "1"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"spacing", "=", "0.3"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"thick", "=", "0.005"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"dash", "=", 
+       RowBox[{"{", 
+        RowBox[{"0.01", ",", "0.02"}], "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"rRed", "=", "0.15"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"rBlue", "=", "0.2"}], ";", 
+      RowBox[{"(*", 
+       RowBox[{
+       "Set", " ", "the", " ", "radius", " ", "of", " ", "red", " ", "and", 
+        " ", "blue", " ", "circles"}], "*)"}], "\[IndentingNewLine]", 
       "\[IndentingNewLine]", "\[IndentingNewLine]", 
       RowBox[{"FMXR", "=", 
        RowBox[{"Table", "[", 
@@ -3658,288 +3682,399 @@ each class: \>\"", ",", " ", "Str2", ",", " ",
        RowBox[{
         RowBox[{"Table", "[", 
          RowBox[{
-          RowBox[{"GraphPlot", "[", 
+          RowBox[{"Show", "[", 
            RowBox[{
-            RowBox[{"DeleteDuplicates", "[", 
+            RowBox[{"GraphPlot", "[", 
              RowBox[{
-              RowBox[{"Table", "[", 
+              RowBox[{"DeleteDuplicates", "[", 
                RowBox[{
-                RowBox[{"1", "\[Rule]", "j1"}], ",", 
-                RowBox[{"{", 
-                 RowBox[{"j1", ",", "2", ",", "n"}], "}"}]}], "]"}], "~", 
-              "Join", "~", 
-              RowBox[{"alledges", "[", "k1", "]"}]}], "]"}], ",", 
-            RowBox[{"VertexLabeling", "\[Rule]", "False"}], ",", 
-            RowBox[{"(*", " ", 
-             RowBox[{
-              RowBox[{"Delete", " ", "duplicate", " ", "edges"}], ",", " ", 
-              RowBox[{"then", " ", "determine", " ", "color", " ", "of", " ", 
-               RowBox[{"edges", "."}]}]}], " ", "*)"}], 
-            RowBox[{"EdgeRenderingFunction", "\[Rule]", 
-             RowBox[{"(", 
-              RowBox[{
-               RowBox[{"Which", "[", 
+                RowBox[{"Table", "[", 
+                 RowBox[{
+                  RowBox[{"1", "\[Rule]", "j1"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"j1", ",", "2", ",", "n"}], "}"}]}], "]"}], "~", 
+                "Join", "~", 
+                RowBox[{"alledges", "[", "k1", "]"}]}], "]"}], ",", 
+              RowBox[{"VertexLabeling", "\[Rule]", "False"}], ",", 
+              RowBox[{"(*", 
+               RowBox[{"Original", " ", "EdgeRenderingFunction"}], "*)"}], 
+              RowBox[{"EdgeRenderingFunction", "\[Rule]", 
+               RowBox[{"(", 
                 RowBox[{
-                 RowBox[{
+                 RowBox[{"Module", "[", 
                   RowBox[{
-                   RowBox[{"MemberQ", "[", 
-                    RowBox[{
-                    RowBox[{"rededges", "[", "k1", "]"}], ",", 
-                    RowBox[{
-                    RowBox[{"First", "[", "#2", "]"}], "\[Rule]", 
-                    RowBox[{"Last", "[", "#2", "]"}]}]}], "]"}], "\[Equal]", 
-                   "True"}], "&&", 
-                  RowBox[{
-                   RowBox[{"MemberQ", "[", 
-                    RowBox[{
-                    RowBox[{"bluedges", "[", "k1", "]"}], ",", 
-                    RowBox[{
-                    RowBox[{"First", "[", "#2", "]"}], "\[Rule]", 
-                    RowBox[{"Last", "[", "#2", "]"}]}]}], "]"}], "\[Equal]", 
-                   "False"}]}], ",", 
-                 RowBox[{"{", 
-                  RowBox[{
-                   RowBox[{"RGBColor", "[", 
-                    RowBox[{"1", ",", "0.3", ",", "0.3"}], "]"}], ",", 
-                   RowBox[{"Thickness", "[", "0.025", "]"}], ",", 
-                   RowBox[{"Line", "[", "#1", "]"}]}], "}"}], ",", 
-                 RowBox[{
-                  RowBox[{
-                   RowBox[{"MemberQ", "[", 
-                    RowBox[{
-                    RowBox[{"rededges", "[", "k1", "]"}], ",", 
-                    RowBox[{
-                    RowBox[{"First", "[", "#2", "]"}], "\[Rule]", 
-                    RowBox[{"Last", "[", "#2", "]"}]}]}], "]"}], "\[Equal]", 
-                   "False"}], "&&", 
-                  RowBox[{
-                   RowBox[{"MemberQ", "[", 
-                    RowBox[{
-                    RowBox[{"bluedges", "[", "k1", "]"}], ",", 
-                    RowBox[{
-                    RowBox[{"First", "[", "#2", "]"}], "\[Rule]", 
-                    RowBox[{"Last", "[", "#2", "]"}]}]}], "]"}], "\[Equal]", 
-                   "True"}]}], ",", 
-                 RowBox[{"{", 
-                  RowBox[{
-                   RowBox[{"RGBColor", "[", 
-                    RowBox[{"0.2", ",", "0.7", ",", "1"}], "]"}], ",", 
-                   RowBox[{"Thickness", "[", "0.025", "]"}], ",", 
-                   RowBox[{"Line", "[", "#1", "]"}]}], "}"}], ",", 
-                 RowBox[{
-                  RowBox[{
-                   RowBox[{"MemberQ", "[", 
-                    RowBox[{
-                    RowBox[{"rededges", "[", "k1", "]"}], ",", 
-                    RowBox[{
-                    RowBox[{"First", "[", "#2", "]"}], "\[Rule]", 
-                    RowBox[{"Last", "[", "#2", "]"}]}]}], "]"}], "\[Equal]", 
-                   "True"}], "&&", 
-                  RowBox[{
-                   RowBox[{"MemberQ", "[", 
-                    RowBox[{
-                    RowBox[{"bluedges", "[", "k1", "]"}], ",", 
-                    RowBox[{
-                    RowBox[{"First", "[", "#2", "]"}], "\[Rule]", 
-                    RowBox[{"Last", "[", "#2", "]"}]}]}], "]"}], "\[Equal]", 
-                   "True"}]}], ",", 
-                 RowBox[{"{", 
-                  RowBox[{
-                   RowBox[{"Thickness", "[", "0.025", "]"}], ",", 
-                   RowBox[{"RGBColor", "[", 
-                    RowBox[{"0.5", ",", "0.3", ",", "0.9"}], "]"}], ",", 
-                   RowBox[{"Line", "[", "#1", "]"}]}], "}"}], ",", 
-                 RowBox[{
-                  RowBox[{
-                   RowBox[{"MemberQ", "[", 
-                    RowBox[{
-                    RowBox[{"rededges", "[", "k1", "]"}], ",", 
-                    RowBox[{
-                    RowBox[{"First", "[", "#2", "]"}], "\[Rule]", 
-                    RowBox[{"Last", "[", "#2", "]"}]}]}], "]"}], "\[Equal]", 
-                   "False"}], "&&", 
-                  RowBox[{
-                   RowBox[{"MemberQ", "[", 
-                    RowBox[{
-                    RowBox[{"bluedges", "[", "k1", "]"}], ",", 
-                    RowBox[{
-                    RowBox[{"First", "[", "#2", "]"}], "\[Rule]", 
-                    RowBox[{"Last", "[", "#2", "]"}]}]}], "]"}], "\[Equal]", 
-                   "False"}]}], ",", 
-                 RowBox[{"{", 
-                  RowBox[{"Thickness", "[", "0.025", "]"}], "}"}]}], "]"}], 
-               "&"}], ")"}]}], ",", 
-            RowBox[{"(*", " ", 
-             RowBox[{
-              RowBox[{
-              "When", " ", "the", " ", "edge", " ", "comes", " ", "from", " ",
-                "the", " ", "left", " ", "side"}], ",", " ", 
-              RowBox[{
-              "not", " ", "from", " ", "the", " ", "right", " ", "side"}], 
-              ",", " ", 
-              RowBox[{
-               RowBox[{"then", " ", "it", " ", "is", " ", "red"}], ";", " ", 
-               RowBox[{
-               "if", " ", "from", " ", "the", " ", "right", " ", "side"}]}], 
-              ",", " ", 
-              RowBox[{
-              "not", " ", "from", " ", "the", " ", "left", " ", "side"}], ",",
-               " ", 
-              RowBox[{
-               RowBox[{"then", " ", "it", " ", "is", " ", "blue"}], ";", " ", 
-               RowBox[{"if", " ", "from", " ", "both", " ", "sides"}]}], ",", 
-              " ", 
-              RowBox[{"then", " ", "it", " ", "is", " ", "purple", " ", 
-               RowBox[{
-                RowBox[{"(", 
-                 RowBox[{"zw", "-", "edge"}], ")"}], "."}]}]}], " ", "*)"}], 
-            RowBox[{"VertexCoordinateRules", "\[Rule]", 
-             RowBox[{"Flatten", "[", 
-              RowBox[{
-               RowBox[{"Table", "[", 
-                RowBox[{
-                 RowBox[{"{", 
-                  RowBox[{"k1", "\[Rule]", 
                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"v1", "=", 
+                    RowBox[{"#1", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}]}], ",", 
+                    RowBox[{"v2", "=", 
+                    RowBox[{"#1", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}]}], ",", "dx", ",", "dy", 
+                    ",", "shift"}], "}"}], ",", 
+                   RowBox[{
+                    RowBox[{"dx", "=", 
+                    RowBox[{
+                    RowBox[{"v2", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "-", 
+                    RowBox[{"v1", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}]}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"dy", "=", 
+                    RowBox[{
+                    RowBox[{"v2", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "-", 
+                    RowBox[{"v1", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}]}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"shift", "=", 
+                    RowBox[{"0.025", "/", 
+                    RowBox[{"Sqrt", "[", 
+                    RowBox[{
+                    RowBox[{"dx", "^", "2"}], "+", 
+                    RowBox[{"dy", "^", "2"}]}], "]"}]}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"Which", "[", 
+                    RowBox[{"(*", 
+                    RowBox[{"Red", " ", "solid", " ", "edge", " ", "only"}], 
+                    "*)"}], 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"MemberQ", "[", 
+                    RowBox[{
+                    RowBox[{"rededges", "[", "k1", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"First", "[", "#2", "]"}], "\[Rule]", 
+                    RowBox[{"Last", "[", "#2", "]"}]}]}], "]"}], "\[Equal]", 
+                    "True"}], "&&", 
+                    RowBox[{
+                    RowBox[{"MemberQ", "[", 
+                    RowBox[{
+                    RowBox[{"bluedges", "[", "k1", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"First", "[", "#2", "]"}], "\[Rule]", 
+                    RowBox[{"Last", "[", "#2", "]"}]}]}], "]"}], "\[Equal]", 
+                    "False"}]}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"redcolor", ",", 
+                    RowBox[{"Thickness", "[", "thick", "]"}], ",", 
+                    RowBox[{"Line", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"v1", ",", "v2"}], "}"}], "]"}]}], "}"}], ",", 
+                    RowBox[{"(*", 
+                    RowBox[{"Blue", " ", "dashed", " ", "edge", " ", "only"}],
+                     "*)"}], 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"MemberQ", "[", 
+                    RowBox[{
+                    RowBox[{"rededges", "[", "k1", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"First", "[", "#2", "]"}], "\[Rule]", 
+                    RowBox[{"Last", "[", "#2", "]"}]}]}], "]"}], "\[Equal]", 
+                    "False"}], "&&", 
+                    RowBox[{
+                    RowBox[{"MemberQ", "[", 
+                    RowBox[{
+                    RowBox[{"bluedges", "[", "k1", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"First", "[", "#2", "]"}], "\[Rule]", 
+                    RowBox[{"Last", "[", "#2", "]"}]}]}], "]"}], "\[Equal]", 
+                    "True"}]}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"bluecolor", ",", 
+                    RowBox[{"Thickness", "[", "thick", "]"}], ",", 
+                    RowBox[{"Dashing", "[", "dash", "]"}], ",", 
+                    RowBox[{"Line", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"v1", ",", "v2"}], "}"}], "]"}]}], "}"}], ",", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    "Both", " ", "red", " ", "and", " ", "blue", " ", "edges",
+                     " ", 
+                    RowBox[{"exist", ":", 
+                    RowBox[{
+                    "display", " ", "as", " ", "parallel", " ", "lines"}]}]}],
+                     "*)"}], 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"MemberQ", "[", 
+                    RowBox[{
+                    RowBox[{"rededges", "[", "k1", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"First", "[", "#2", "]"}], "\[Rule]", 
+                    RowBox[{"Last", "[", "#2", "]"}]}]}], "]"}], "\[Equal]", 
+                    "True"}], "&&", 
+                    RowBox[{
+                    RowBox[{"MemberQ", "[", 
+                    RowBox[{
+                    RowBox[{"bluedges", "[", "k1", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"First", "[", "#2", "]"}], "\[Rule]", 
+                    RowBox[{"Last", "[", "#2", "]"}]}]}], "]"}], "\[Equal]", 
+                    "True"}]}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    RowBox[{"Red", " ", "line", " ", "above"}], ",", 
+                    RowBox[{"blue", " ", "line", " ", "below"}]}], "*)"}], 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"redcolor", ",", 
+                    RowBox[{"Thickness", "[", "thick", "]"}], ",", 
+                    RowBox[{"Line", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"v1", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "-", 
+                    RowBox[{"shift", "*", "dy"}]}], ",", 
+                    RowBox[{
+                    RowBox[{"v1", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "+", 
+                    RowBox[{"shift", "*", "dx"}]}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"v2", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "-", 
+                    RowBox[{"shift", "*", "dy"}]}], ",", 
+                    RowBox[{
+                    RowBox[{"v2", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "+", 
+                    RowBox[{"shift", "*", "dx"}]}]}], "}"}]}], "}"}], "]"}]}],
+                     "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"bluecolor", ",", 
+                    RowBox[{"Thickness", "[", "thick", "]"}], ",", 
+                    RowBox[{"Dashing", "[", "dash", "]"}], ",", 
+                    RowBox[{"Line", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"v1", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "+", 
+                    RowBox[{"shift", "*", "dy"}]}], ",", 
+                    RowBox[{
+                    RowBox[{"v1", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "-", 
+                    RowBox[{"shift", "*", "dx"}]}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"v2", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "+", 
+                    RowBox[{"shift", "*", "dy"}]}], ",", 
+                    RowBox[{
+                    RowBox[{"v2", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "-", 
+                    RowBox[{"shift", "*", "dx"}]}]}], "}"}]}], "}"}], "]"}]}],
+                     "}"}]}], "}"}], ",", 
+                    RowBox[{"(*", 
+                    RowBox[{"No", " ", "edge"}], "*)"}], "True", ",", 
+                    RowBox[{"{", "}"}]}], "]"}]}]}], "]"}], "&"}], ")"}]}], 
+              ",", 
+              RowBox[{"VertexCoordinateRules", "\[Rule]", 
+               RowBox[{"Flatten", "[", 
+                RowBox[{
+                 RowBox[{"Table", "[", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"k", "\[Rule]", 
+                    RowBox[{"{", 
                     RowBox[{
                     RowBox[{"Cos", "[", 
-                    RowBox[{"2", 
+                    RowBox[{"2", " ", 
                     RowBox[{"(", 
-                    RowBox[{"k1", "-", "1"}], ")"}], 
+                    RowBox[{"k", "-", "1"}], ")"}], " ", 
                     RowBox[{"\[Pi]", "/", "n"}]}], "]"}], ",", 
                     RowBox[{"Sin", "[", 
-                    RowBox[{"2", 
+                    RowBox[{"2", " ", 
                     RowBox[{"(", 
-                    RowBox[{"k1", "-", "1"}], ")"}], 
+                    RowBox[{"k", "-", "1"}], ")"}], " ", 
                     RowBox[{"\[Pi]", "/", "n"}]}], "]"}]}], "}"}]}], "}"}], 
-                 ",", 
-                 RowBox[{"{", 
-                  RowBox[{"k1", ",", "n"}], "}"}]}], "]"}], ",", "1"}], 
-              "]"}]}], ",", 
-            RowBox[{"(*", " ", 
-             RowBox[{
-              RowBox[{
-               RowBox[{"Place", " ", "vertices", " ", "at", " ", "n"}], "-", 
-               RowBox[{"th", " ", "roots", " ", "of", " ", "unity"}]}], ",", 
-              " ", 
-              RowBox[{"in", " ", "the", " ", "counterclockwise", " ", 
-               RowBox[{"order", "."}]}]}], " ", "*)"}], 
-            RowBox[{"VertexRenderingFunction", "\[Rule]", 
-             RowBox[{"(", 
-              RowBox[{
-               RowBox[{"{", 
-                RowBox[{
-                 RowBox[{"#2", "/.", 
-                  RowBox[{"Table", "[", 
-                   RowBox[{
-                    RowBox[{"Which", "[", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"FMXR", "[", 
-                    RowBox[{"[", 
-                    RowBox[{"k1", ",", "1"}], "]"}], "]"}], "[", 
-                    RowBox[{"[", "i1", "]"}], "]"}], "[", 
-                    RowBox[{"[", "i1", "]"}], "]"}], "==", "1"}], "&&", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"FMXR", "[", 
-                    RowBox[{"[", 
-                    RowBox[{"k1", ",", "2"}], "]"}], "]"}], "[", 
-                    RowBox[{"[", "i1", "]"}], "]"}], "[", 
-                    RowBox[{"[", "i1", "]"}], "]"}], "==", "0"}]}], ",", 
-                    RowBox[{"i1", "\[Rule]", 
-                    RowBox[{"RGBColor", "[", 
-                    RowBox[{"1", ",", "0.3", ",", "0.3"}], "]"}]}], ",", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"FMXR", "[", 
-                    RowBox[{"[", 
-                    RowBox[{"k1", ",", "1"}], "]"}], "]"}], "[", 
-                    RowBox[{"[", "i1", "]"}], "]"}], "[", 
-                    RowBox[{"[", "i1", "]"}], "]"}], "==", "0"}], "&&", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"FMXR", "[", 
-                    RowBox[{"[", 
-                    RowBox[{"k1", ",", "2"}], "]"}], "]"}], "[", 
-                    RowBox[{"[", "i1", "]"}], "]"}], "[", 
-                    RowBox[{"[", "i1", "]"}], "]"}], "==", "1"}]}], ",", 
-                    RowBox[{"i1", "\[Rule]", 
-                    RowBox[{"RGBColor", "[", 
-                    RowBox[{"0.2", ",", "0.7", ",", "1"}], "]"}]}], ",", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"FMXR", "[", 
-                    RowBox[{"[", 
-                    RowBox[{"k1", ",", "1"}], "]"}], "]"}], "[", 
-                    RowBox[{"[", "i1", "]"}], "]"}], "[", 
-                    RowBox[{"[", "i1", "]"}], "]"}], "==", "1"}], "&&", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"FMXR", "[", 
-                    RowBox[{"[", 
-                    RowBox[{"k1", ",", "2"}], "]"}], "]"}], "[", 
-                    RowBox[{"[", "i1", "]"}], "]"}], "[", 
-                    RowBox[{"[", "i1", "]"}], "]"}], "==", "1"}]}], ",", 
-                    RowBox[{"i1", "\[Rule]", 
-                    RowBox[{"RGBColor", "[", 
-                    RowBox[{"0.5", ",", "0.3", ",", "0.9"}], "]"}]}], ",", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"FMXR", "[", 
-                    RowBox[{"[", 
-                    RowBox[{"k1", ",", "1"}], "]"}], "]"}], "[", 
-                    RowBox[{"[", "i1", "]"}], "]"}], "[", 
-                    RowBox[{"[", "i1", "]"}], "]"}], "==", "0"}], "&&", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"FMXR", "[", 
-                    RowBox[{"[", 
-                    RowBox[{"k1", ",", "2"}], "]"}], "]"}], "[", 
-                    RowBox[{"[", "i1", "]"}], "]"}], "[", 
-                    RowBox[{"[", "i1", "]"}], "]"}], "==", "0"}]}], ",", 
-                    RowBox[{"i1", "\[Rule]", "White"}]}], "]"}], ",", 
-                    RowBox[{"{", 
-                    RowBox[{"i1", ",", "n"}], "}"}]}], "]"}]}], ",", 
-                 RowBox[{"EdgeForm", "[", "Black", "]"}], ",", 
-                 RowBox[{"Disk", "[", 
-                  RowBox[{"#1", ",", ".24"}], "]"}], ",", "Black", ",", 
-                 RowBox[{"FontSize", "\[Rule]", "28"}], ",", 
-                 RowBox[{"FontWeight", "\[Rule]", "Bold"}], ",", 
-                 RowBox[{"Text", "[", 
-                  RowBox[{"#2", ",", "#1"}], "]"}], ",", 
-                 RowBox[{"Opacity", "[", "0.5", "]"}], ",", 
-                 RowBox[{"RGBColor", "[", 
-                  RowBox[{"0", ",", "0.5", ",", "0"}], "]"}], ",", 
-                 RowBox[{"FontSize", "\[Rule]", "24"}], ",", 
-                 RowBox[{"Text", "[", 
-                  RowBox[{"k1", ",", 
+                   ",", 
                    RowBox[{"{", 
-                    RowBox[{"1.1", ",", 
-                    RowBox[{"-", "1"}]}], "}"}]}], "]"}]}], "}"}], "&"}], 
-              ")"}]}], ",", 
-            RowBox[{"SelfLoopStyle", "\[Rule]", "None"}], ",", 
-            RowBox[{"ImageSize", "\[Rule]", 
+                    RowBox[{"k", ",", "n"}], "}"}]}], "]"}], ",", "1"}], 
+                "]"}]}], ",", 
+              RowBox[{"VertexRenderingFunction", "\[Rule]", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"Module", "[", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"vPos", ",", "label"}], "}"}], ",", 
+                   RowBox[{
+                    RowBox[{"vPos", "=", "#1"}], ";", 
+                    RowBox[{"label", "=", "#2"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"Which", "[", 
+                    RowBox[{"(*", 
+                    RowBox[{"Red", " ", "circle", " ", "only"}], "*)"}], 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"FMXR", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"k1", ",", "1"}], "]"}], "]"}], "[", 
+                    RowBox[{"[", "label", "]"}], "]"}], "[", 
+                    RowBox[{"[", "label", "]"}], "]"}], "\[Equal]", "1"}], "&&", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"FMXR", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"k1", ",", "2"}], "]"}], "]"}], "[", 
+                    RowBox[{"[", "label", "]"}], "]"}], "[", 
+                    RowBox[{"[", "label", "]"}], "]"}], "\[Equal]", "0"}]}], 
+                    ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"EdgeForm", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"redcolor", ",", 
+                    RowBox[{"Thickness", "[", "thick", "]"}]}], "}"}], "]"}], 
+                    ",", 
+                    RowBox[{"FaceForm", "[", "White", "]"}], ",", 
+                    RowBox[{"Disk", "[", 
+                    RowBox[{"vPos", ",", "rBlue"}], "]"}], ",", "Black", ",", 
+                    RowBox[{"FontSize", "\[Rule]", "20"}], ",", 
+                    RowBox[{"Text", "[", 
+                    RowBox[{"label", ",", "vPos"}], "]"}]}], "}"}], ",", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    "Blue", " ", "dashed", " ", "circle", " ", "only"}], 
+                    "*)"}], 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"FMXR", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"k1", ",", "1"}], "]"}], "]"}], "[", 
+                    RowBox[{"[", "label", "]"}], "]"}], "[", 
+                    RowBox[{"[", "label", "]"}], "]"}], "\[Equal]", "0"}], "&&", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"FMXR", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"k1", ",", "2"}], "]"}], "]"}], "[", 
+                    RowBox[{"[", "label", "]"}], "]"}], "[", 
+                    RowBox[{"[", "label", "]"}], "]"}], "\[Equal]", "1"}]}], 
+                    ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"EdgeForm", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"bluecolor", ",", 
+                    RowBox[{"Thickness", "[", "thick", "]"}], ",", 
+                    RowBox[{"Dashing", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"0.02", ",", "0.02"}], "}"}], "]"}]}], "}"}], 
+                    "]"}], ",", 
+                    RowBox[{"FaceForm", "[", "White", "]"}], ",", 
+                    RowBox[{"Disk", "[", 
+                    RowBox[{"vPos", ",", "rBlue"}], "]"}], ",", "Black", ",", 
+                    RowBox[{"FontSize", "\[Rule]", "20"}], ",", 
+                    RowBox[{"Text", "[", 
+                    RowBox[{"label", ",", "vPos"}], "]"}]}], "}"}], ",", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    "Red", " ", "circle", " ", "inside", " ", "a", " ", 
+                    "blue", " ", "dashed", " ", "circle"}], "*)"}], 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"FMXR", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"k1", ",", "1"}], "]"}], "]"}], "[", 
+                    RowBox[{"[", "label", "]"}], "]"}], "[", 
+                    RowBox[{"[", "label", "]"}], "]"}], "\[Equal]", "1"}], "&&", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"FMXR", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"k1", ",", "2"}], "]"}], "]"}], "[", 
+                    RowBox[{"[", "label", "]"}], "]"}], "[", 
+                    RowBox[{"[", "label", "]"}], "]"}], "\[Equal]", "1"}]}], 
+                    ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"EdgeForm", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"bluecolor", ",", 
+                    RowBox[{"Thickness", "[", "thick", "]"}], ",", 
+                    RowBox[{"Dashing", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"0.02", ",", "0.02"}], "}"}], "]"}]}], "}"}], 
+                    "]"}], ",", 
+                    RowBox[{"FaceForm", "[", "White", "]"}], ",", 
+                    RowBox[{"Disk", "[", 
+                    RowBox[{"vPos", ",", "rBlue"}], "]"}], ",", 
+                    RowBox[{"EdgeForm", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"redcolor", ",", 
+                    RowBox[{"Thickness", "[", "thick", "]"}], ",", 
+                    RowBox[{"Dashing", "[", "None", "]"}]}], "}"}], "]"}], 
+                    ",", 
+                    RowBox[{"FaceForm", "[", "White", "]"}], ",", 
+                    RowBox[{"Disk", "[", 
+                    RowBox[{"vPos", ",", "rRed"}], "]"}], ",", "Black", ",", 
+                    RowBox[{"FontSize", "\[Rule]", "20"}], ",", 
+                    RowBox[{"Text", "[", 
+                    RowBox[{"label", ",", "vPos"}], "]"}]}], "}"}], ",", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    "No", " ", "circle", " ", "if", " ", "the", " ", "vertex",
+                     " ", "is", " ", "from", " ", "neither", " ", "side"}], 
+                    "*)"}], "True", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"EdgeForm", "[", "White", "]"}], ",", 
+                    RowBox[{"FaceForm", "[", "White", "]"}], ",", 
+                    RowBox[{"Disk", "[", 
+                    RowBox[{"vPos", ",", "rBlue"}], "]"}], ",", "Black", ",", 
+                    RowBox[{"FontSize", "\[Rule]", "20"}], ",", 
+                    RowBox[{"Text", "[", 
+                    RowBox[{"label", ",", "vPos"}], "]"}]}], "}"}]}], 
+                    "]"}]}]}], "]"}], "&"}], ")"}]}], ",", 
+              RowBox[{"SelfLoopStyle", "\[Rule]", "None"}], ",", 
+              RowBox[{"ImageSize", "\[Rule]", 
+               RowBox[{"{", 
+                RowBox[{"240", ",", "240"}], "}"}]}]}], "]"}], ",", 
+            RowBox[{"(*", 
+             RowBox[{
+             "Numbering", " ", "each", " ", "diagram", " ", "at", " ", "the", 
+              " ", "lower", " ", "right", " ", "corner"}], "*)"}], 
+            RowBox[{"Graphics", "[", 
              RowBox[{"{", 
-              RowBox[{"240", ",", "240"}], "}"}]}]}], "]"}], ",", 
+              RowBox[{"Green", ",", 
+               RowBox[{"FontSize", "\[Rule]", "18"}], ",", 
+               RowBox[{"Text", "[", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"k1", ",", 
+                   RowBox[{"RGBColor", "[", 
+                    RowBox[{"0", ",", "0.5", ",", "0"}], "]"}]}], "]"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"1.1", ",", 
+                   RowBox[{"-", "1.2"}]}], "}"}]}], "]"}]}], "}"}], "]"}]}], 
+           "]"}], ",", 
           RowBox[{"{", 
            RowBox[{"k1", ",", "1", ",", 
             RowBox[{"Length", "[", "FMXR", "]"}]}], "}"}]}], "]"}], ",", 
         RowBox[{"List", "\[Rule]", "Print"}], ",", "1", ",", 
         RowBox[{"Heads", "\[Rule]", "True"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
       RowBox[{"(*", " ", 
        RowBox[{
         RowBox[{"Color", " ", 
@@ -3947,10 +4082,8 @@ each class: \>\"", ",", " ", "Str2", ",", " ",
           RowBox[{"z", "-", 
            RowBox[{"circles", " ", "red"}]}]}]}], ",", " ", 
         RowBox[{"w", "-", 
-         RowBox[{"circles", " ", "blue"}]}], ",", " ", 
-        RowBox[{"zw", "-", 
-         RowBox[{"circles", " ", "purple"}]}]}], " ", "*)"}], 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{"circles", " ", "blue", " ", "and", " ", "dashed"}]}]}], 
+       "*)"}], "\n", "\[IndentingNewLine]", 
       RowBox[{"graphingtime", "=", 
        RowBox[{"AbsoluteTime", "[", "]"}]}], ";", " ", "\[IndentingNewLine]", 
       "\[IndentingNewLine]", 
@@ -4287,17 +4420,19 @@ duplicate ZW-matrix eliminations, and graphing:\>\"", ",",
    3.9143998227746763`*^9}, {3.9143999567707167`*^9, 
    3.9144000037085037`*^9}, {3.9144001143137007`*^9, 3.914400165781337*^9}, {
    3.914400565744956*^9, 3.9144005688161583`*^9}, {3.9144007475514507`*^9, 
-   3.914400751810535*^9}, {3.914401035801931*^9, 3.9144010377329283`*^9}},
+   3.914400751810535*^9}, {3.914401035801931*^9, 3.9144010377329283`*^9}, {
+   3.9403626609491796`*^9, 3.940362680042554*^9}, {3.940889294939591*^9, 
+   3.940889370485161*^9}, {3.940889452270534*^9, 3.940889458334991*^9}, {
+   3.940889528837103*^9, 3.940889532224099*^9}, {3.940889568964589*^9, 
+   3.9408896624576674`*^9}},
  CellLabel->"In[1]:=",ExpressionUUID->"11390359-4331-44d4-a2e6-3a951aaf009f"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"zwmatrices", "[", "4", "]"}]], "Input",
- CellChangeTimes->{{3.913258611255012*^9, 3.9132586147616663`*^9}, {
-  3.913259300152327*^9, 3.9132593009256783`*^9}, {3.913267752365613*^9, 
-  3.913267752540228*^9}},
- CellLabel->"In[2]:=",ExpressionUUID->"cc976e35-1761-46e0-8f08-3e2a226ba792"],
+ CellChangeTimes->{{3.940889675945257*^9, 3.940889679368205*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"8cc59c54-9257-449c-bf70-75675c339d54"],
 
 Cell[CellGroupData[{
 
@@ -4325,7 +4460,7 @@ each class: \"\>", "\[InvisibleSpace]",
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.005906\"\>",
+    StyleBox["\<\"0.006757\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -4340,29 +4475,19 @@ each class: \"\>", "\[InvisibleSpace]",
    ",\nnumber of possible ordered z-matrices in each class: ", 
    Style["{64, 64, 64, 64}", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.005906", {Bold, 
+   Style["0.006757", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542688956232*^9},
+ CellChangeTimes->{3.9408896801445704`*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"f119d8b9-e165-4393-a384-6426db832b91"],
+In[2]:=",ExpressionUUID->"52a16db1-e088-4014-baa5-97f85c46a755"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542688964233*^9},
+ CellChangeTimes->{3.940889680149126*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"30ae982d-cc84-4532-8c45-60c00ab37c51"],
+In[2]:=",ExpressionUUID->"009f1858-209c-463f-ae1a-d39329798568"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -4388,7 +4513,7 @@ each class: \"\>", "\[InvisibleSpace]",
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.009610\"\>",
+    StyleBox["\<\"0.012764\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -4403,29 +4528,19 @@ each class: \"\>", "\[InvisibleSpace]",
    ",\nnumber of possible ordered z-matrices in each class: ", 
    Style["{16, 32, 26, 16}", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.009610", {Bold, 
+   Style["0.012764", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542688969535*^9},
+ CellChangeTimes->{3.9408896801537733`*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"5be31dcf-dfe4-4e09-88f9-63f45ab5dd19"],
+In[2]:=",ExpressionUUID->"d13fb09f-6c1d-4d18-b425-f22459f84616"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542688972208*^9},
+ CellChangeTimes->{3.940889680156148*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"4704b5bc-c53c-4632-9270-e50f4a6c30bd"],
+In[2]:=",ExpressionUUID->"fb6d094f-9aba-4370-8f38-fa5e1c8f3fa4"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -4451,7 +4566,7 @@ each class: \"\>", "\[InvisibleSpace]",
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.010631\"\>",
+    StyleBox["\<\"0.014327\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -4466,29 +4581,19 @@ each class: \"\>", "\[InvisibleSpace]",
    ",\nnumber of possible ordered z-matrices in each class: ", 
    Style["{6, 14, 13, 12}", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.010631", {Bold, 
+   Style["0.014327", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542688973947*^9},
+ CellChangeTimes->{3.940889680158181*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"ec91cd06-7bd9-4bce-b112-93ba22d701f5"],
+In[2]:=",ExpressionUUID->"a5f4ebc6-3def-437a-8367-6b29849a204a"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542688975791*^9},
+ CellChangeTimes->{3.940889680160323*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"f3c1adc3-b075-49be-829e-d0eae2e72439"],
+In[2]:=",ExpressionUUID->"65723004-0fbd-41dc-a16f-ee318f6e92b5"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -4514,7 +4619,7 @@ Cell[BoxData[
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.011587\"\>",
+    StyleBox["\<\"0.015946\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -4528,29 +4633,19 @@ Cell[BoxData[
      RGBColor[0, 0., 0.7], 13}], ",\nnumber of possible z-matrices: ", 
    Style["{2, 3, 2, 4}", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.011587", {Bold, 
+   Style["0.015946", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542688977467*^9},
+ CellChangeTimes->{3.940889680162839*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"7e7f705f-7e71-43eb-a8cd-9dbfdef29721"],
+In[2]:=",ExpressionUUID->"c2165f03-cbb6-499a-a4b0-51095f865c35"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542688979218*^9},
+ CellChangeTimes->{3.940889680165339*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"74015298-1af6-49c2-9656-6830ae13379a"],
+In[2]:=",ExpressionUUID->"a0754dc3-6ae3-4cbb-829b-d331f46b577f"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -4576,7 +4671,7 @@ each class: \"\>", "\[InvisibleSpace]",
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.012278\"\>",
+    StyleBox["\<\"0.017046\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -4591,29 +4686,19 @@ each class: \"\>", "\[InvisibleSpace]",
    ",\nnumber of possible ordered z-matrices in each class: ", 
    Style["{2, 3, 2, 4}", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.012278", {Bold, 
+   Style["0.017046", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542688980872*^9},
+ CellChangeTimes->{3.94088968016756*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"1b04b499-e588-4e9e-8a63-ec867a9d7bf8"],
+In[2]:=",ExpressionUUID->"58f09063-6bfe-4b36-9375-08aa99ce29d1"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542688982645*^9},
+ CellChangeTimes->{3.9408896801701107`*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"1449635d-d714-4158-bde1-86ca029dc02b"],
+In[2]:=",ExpressionUUID->"be138fb9-17d7-4e8a-9116-44d5e39b3943"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -4639,7 +4724,7 @@ each class: \"\>", "\[InvisibleSpace]",
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.013136\"\>",
+    StyleBox["\<\"0.018960\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -4654,29 +4739,19 @@ each class: \"\>", "\[InvisibleSpace]",
    ",\nnumber of possible ordered z-matrices in each class: ", 
    Style["{2, 3, 2, 2}", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.013136", {Bold, 
+   Style["0.018960", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.9215426889845743`*^9},
+ CellChangeTimes->{3.940889680172532*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"a5f503ec-e691-4b30-a6d6-15dd368ada33"],
+In[2]:=",ExpressionUUID->"c77848e3-393f-4414-8710-ede630d27cab"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542688987688*^9},
+ CellChangeTimes->{3.9408896801749897`*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"f93560bf-90e0-4c58-ae25-ec74b83de097"],
+In[2]:=",ExpressionUUID->"fd4d129a-021d-406f-9701-39392205e9bc"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -4702,7 +4777,7 @@ Cell[BoxData[
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.014307\"\>",
+    StyleBox["\<\"0.021121\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -4717,29 +4792,19 @@ Cell[BoxData[
    ",\nnumber of possible w-matrices in each class: ", 
    Style["{5, 24, 8, 4}", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.014307", {Bold, 
+   Style["0.021121", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542688989491*^9},
+ CellChangeTimes->{3.940889680177785*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"2ff32ec9-d2b7-4c4a-b109-96ede214ddad"],
+In[2]:=",ExpressionUUID->"cbc76f5f-35af-4a6b-9405-f751fcafb6de"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.9215426889913483`*^9},
+ CellChangeTimes->{3.940889680180628*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"85851890-40c8-4c79-944d-08b5ba8a382d"],
+In[2]:=",ExpressionUUID->"94ff2571-4b09-41d9-8d6e-3ff03c00ecbf"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -4765,7 +4830,7 @@ class: \"\>", "\[InvisibleSpace]",
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.014991\"\>",
+    StyleBox["\<\"0.022611\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -4780,29 +4845,19 @@ class: \"\>", "\[InvisibleSpace]",
    ",\nnumber of possible zw-matrices  in each class: ", 
    Style["{82, 108, 24, 8}", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.014991", {Bold, 
+   Style["0.022611", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542688993065*^9},
+ CellChangeTimes->{3.940889680183393*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"adde99c0-6694-4156-9162-2b94b266ffda"],
+In[2]:=",ExpressionUUID->"2708541c-1d90-41a7-b263-5f9860b1b1e6"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.9215426889948273`*^9},
+ CellChangeTimes->{3.9408896801860657`*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"6f188ab9-912b-496f-b096-a3b962f8d22f"],
+In[2]:=",ExpressionUUID->"645c32ef-f5d2-4cae-a6b0-b5500e4ca641"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -4828,7 +4883,7 @@ disconnected z-part in each class: \"\>", "\[InvisibleSpace]",
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.016260\"\>",
+    StyleBox["\<\"0.024831\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -4844,29 +4899,19 @@ disconnected z-part in each class: \"\>", "\[InvisibleSpace]",
 ", 
    Style["{82, 9, 2, 8}", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.016260", {Bold, 
+   Style["0.024831", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542688996491*^9},
+ CellChangeTimes->{3.9408896801887217`*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"17e6b165-8d8b-4875-950f-5790e35435b5"],
+In[2]:=",ExpressionUUID->"609fe503-c037-4149-8935-8167843731f6"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.9215426889983377`*^9},
+ CellChangeTimes->{3.9408896801917133`*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"57a0e0d3-407e-4440-85ca-6524a3121e72"],
+In[2]:=",ExpressionUUID->"91c51b04-2e71-461c-af19-45e35c17c7fa"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -4892,7 +4937,7 @@ disconnected z-part in each class: \"\>", "\[InvisibleSpace]",
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.021626\"\>",
+    StyleBox["\<\"0.028736\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -4908,29 +4953,19 @@ disconnected z-part in each class: \"\>", "\[InvisibleSpace]",
 ", 
    Style["{20, 5, 1, 8}", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.021626", {Bold, 
+   Style["0.028736", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689000017*^9},
+ CellChangeTimes->{3.940889680194344*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"7b530a63-778c-486c-9a0a-cb55e1004cb2"],
+In[2]:=",ExpressionUUID->"08d75bca-dace-486d-9c47-5cb144e668d1"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689001862*^9},
+ CellChangeTimes->{3.9408896801973047`*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"9345f134-24b4-4728-a611-7cc987197264"],
+In[2]:=",ExpressionUUID->"866f6aa4-f36a-4059-b03b-9997ae70e791"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -4956,7 +4991,7 @@ disconnected z-part in each class: \"\>", "\[InvisibleSpace]",
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.022496\"\>",
+    StyleBox["\<\"0.029344\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -4972,29 +5007,19 @@ disconnected z-part in each class: \"\>", "\[InvisibleSpace]",
 ", 
    Style["{20, 1, 1, 8}", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.022496", {Bold, 
+   Style["0.029344", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689003517*^9},
+ CellChangeTimes->{3.940889680199553*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"69b5f9d7-7576-4313-9f7f-214d0288d64f"],
+In[2]:=",ExpressionUUID->"af8ff1a4-99b0-4bd1-847d-2ccaa3bd5b87"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689005197*^9},
+ CellChangeTimes->{3.940889680201571*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"27cd379f-3770-46c4-88f9-46b0f7226863"],
+In[2]:=",ExpressionUUID->"fa9adb6b-a363-4711-b885-a734c489753c"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -5009,7 +5034,7 @@ Cell[BoxData[
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.022983\"\>",
+    StyleBox["\<\"0.029710\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -5021,29 +5046,19 @@ Cell[BoxData[
   SequenceForm["number of possible zw-matrices: ", 
    Style["30", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.022983", {Bold, 
+   Style["0.029710", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689006927*^9},
+ CellChangeTimes->{3.940889680203911*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"2afb8b22-cfcb-442b-9507-cafd27e62deb"],
+In[2]:=",ExpressionUUID->"c23d774c-cfa2-468d-87da-25770a25b751"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.92154268900887*^9},
+ CellChangeTimes->{3.940889680205969*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"7fb8e73c-a98c-4c1c-9872-b0fd5981f267"],
+In[2]:=",ExpressionUUID->"59b8d344-2e1d-4478-9334-920c26de0534"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -5069,7 +5084,7 @@ Cell[BoxData[
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.032111\"\>",
+    StyleBox["\<\"0.039159\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -5083,29 +5098,19 @@ Cell[BoxData[
      RGBColor[0, 0., 0.7], 13}], ",\nnumber of possible zw-matrices: ", 
    Style["30", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.032111", {Bold, 
+   Style["0.039159", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689010832*^9},
+ CellChangeTimes->{3.9408896802081223`*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"d9a0998c-1eab-48d4-ae05-42b7d9daec6a"],
+In[2]:=",ExpressionUUID->"a841aa1a-06f2-45a4-abc9-379b140254dd"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689012848*^9},
+ CellChangeTimes->{3.940889680210752*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"4c16cefb-2586-46b7-9ace-ec72f5f911aa"],
+In[2]:=",ExpressionUUID->"61ac11e1-995d-4c0b-a21b-3c3176b6dc04"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -5131,7 +5136,7 @@ Cell[BoxData[
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.037263\"\>",
+    StyleBox["\<\"0.050286\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -5145,29 +5150,19 @@ Cell[BoxData[
      RGBColor[0, 0., 0.7], 13}], ",\nnumber of possible zw-matrices: ", 
    Style["27", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.037263", {Bold, 
+   Style["0.050286", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.9215426890147867`*^9},
+ CellChangeTimes->{3.940889680213373*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"e143fbce-ced4-465b-95f9-57c0c5a7bf51"],
+In[2]:=",ExpressionUUID->"12d3a914-b053-4058-a36e-9bbe358a84dd"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689016918*^9},
+ CellChangeTimes->{3.9408896802161093`*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"ea850656-8a87-4a56-997e-6b4eb55aa63f"],
+In[2]:=",ExpressionUUID->"4f0de368-cb10-4efe-b1ef-6462b13992f2"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -5193,7 +5188,7 @@ Cell[BoxData[
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.043440\"\>",
+    StyleBox["\<\"0.056947\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -5207,29 +5202,19 @@ Cell[BoxData[
      RGBColor[0, 0., 0.7], 13}], ",\nnumber of possible zw-matrices: ", 
    Style["24", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.043440", {Bold, 
+   Style["0.056947", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689018467*^9},
+ CellChangeTimes->{3.94088968021878*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"51de57c0-da9c-4d2a-a3d9-ab42f4d72688"],
+In[2]:=",ExpressionUUID->"415a4d18-451f-4418-b8a1-d59eef9e2571"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689020453*^9},
+ CellChangeTimes->{3.94088968022152*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"43320cd8-06f9-4e49-9c66-b98b6c5dd202"],
+In[2]:=",ExpressionUUID->"97f66c54-de7e-413c-a917-67feae06e95c"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -5255,7 +5240,7 @@ Cell[BoxData[
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.050765\"\>",
+    StyleBox["\<\"0.071165\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -5269,29 +5254,19 @@ Cell[BoxData[
      RGBColor[0, 0., 0.7], 13}], ",\nnumber of possible zw-matrices: ", 
    Style["19", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.050765", {Bold, 
+   Style["0.071165", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689022121*^9},
+ CellChangeTimes->{3.940889680223235*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"cbeee728-f563-4d13-b8fa-034729756323"],
+In[2]:=",ExpressionUUID->"02a604d0-c7ec-4ab3-bc1e-b4a42efd92ce"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689023696*^9},
+ CellChangeTimes->{3.940889680224988*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"9c8e8d5d-01ec-4a7d-a29c-95b98a8d2659"],
+In[2]:=",ExpressionUUID->"7c4c1ccd-9fce-46c0-bdd6-ae375608ad18"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -5317,7 +5292,7 @@ Cell[BoxData[
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.052774\"\>",
+    StyleBox["\<\"0.074450\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -5331,29 +5306,19 @@ Cell[BoxData[
      RGBColor[0, 0., 0.7], 13}], ",\nnumber of possible zw-matrices: ", 
    Style["16", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.052774", {Bold, 
+   Style["0.074450", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689025038*^9},
+ CellChangeTimes->{3.9408896802269583`*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"0d923655-dfed-4205-b598-eca253077808"],
+In[2]:=",ExpressionUUID->"e4601270-da36-43fe-9cac-dc3d02ae852f"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689026411*^9},
+ CellChangeTimes->{3.940889680229692*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"95aa93bc-13c9-4561-b843-2353a5e7c206"],
+In[2]:=",ExpressionUUID->"006bb4fa-bea8-4829-b474-1075743f149c"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -5379,7 +5344,7 @@ Cell[BoxData[
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.053406\"\>",
+    StyleBox["\<\"0.075454\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -5393,29 +5358,19 @@ Cell[BoxData[
      RGBColor[0, 0., 0.7], 13}], ",\nnumber of possible zw-matrices: ", 
    Style["15", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.053406", {Bold, 
+   Style["0.075454", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.9215426890276937`*^9},
+ CellChangeTimes->{3.940889680232041*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"9dcaf3d1-37a6-41f3-a383-b3dc01a4e476"],
+In[2]:=",ExpressionUUID->"e629cbae-f91b-47bd-82e3-a1eed67eacaf"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.9215426890290823`*^9},
+ CellChangeTimes->{3.9408896802347927`*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"43f0b4d5-0c9e-4b6f-89e8-8d9e58505564"],
+In[2]:=",ExpressionUUID->"9075e613-f45f-4fc8-8f70-8f8ed7e817ca"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -5441,7 +5396,7 @@ Cell[BoxData[
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.056402\"\>",
+    StyleBox["\<\"0.080769\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -5455,29 +5410,19 @@ Cell[BoxData[
      RGBColor[0, 0., 0.7], 13}], ",\nnumber of possible zw-matrices: ", 
    Style["14", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.056402", {Bold, 
+   Style["0.080769", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689030436*^9},
+ CellChangeTimes->{3.940889680237054*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"3dc83ada-ae04-498a-811b-1db2503d76b5"],
+In[2]:=",ExpressionUUID->"4100d2aa-afe5-44bb-91e8-9909d3e3e412"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689031745*^9},
+ CellChangeTimes->{3.940889680238844*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"c26af364-9fa6-48be-a026-243c991d6a61"],
+In[2]:=",ExpressionUUID->"31e340f7-c20d-48bc-93b7-b8c9234e6417"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -5503,7 +5448,7 @@ Cell[BoxData[
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.058853\"\>",
+    StyleBox["\<\"0.086218\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -5517,29 +5462,19 @@ Cell[BoxData[
      RGBColor[0, 0., 0.7], 13}], ",\nnumber of possible zw-matrices: ", 
    Style["9", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.058853", {Bold, 
+   Style["0.086218", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.9215426890330133`*^9},
+ CellChangeTimes->{3.9408896802405167`*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"711c50d9-4422-43e8-be88-2eea95ef3a03"],
+In[2]:=",ExpressionUUID->"d84cf891-461c-4180-a95b-36569aa8a106"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689034346*^9},
+ CellChangeTimes->{3.9408896802423553`*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"c27982c9-32e3-4ace-8f03-f71f7e1cfb2c"],
+In[2]:=",ExpressionUUID->"d12e9944-dbf0-458b-9f04-b18ccf5294db"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -5565,7 +5500,7 @@ Cell[BoxData[
     FontWeight->Bold,
     FontColor->RGBColor[0, 0., 0.7]], "\[InvisibleSpace]", 
    RowBox[{"\<\",\\ncumulative time: \"\>", " ", 
-    StyleBox["\<\"0.061516\"\>",
+    StyleBox["\<\"0.090228\"\>",
      StripOnInput->False,
      LineColor->RGBColor[0, 0., 0.7],
      FrontFaceColor->RGBColor[0, 0., 0.7],
@@ -5579,754 +5514,882 @@ Cell[BoxData[
      RGBColor[0, 0., 0.7], 13}], ",\nnumber of possible zw-matrices: ", 
    Style["6", {Bold, 
      RGBColor[0, 0., 0.7], 13}], ",\ncumulative time: " 
-   Style["0.061516", {Bold, 
+   Style["0.090228", {Bold, 
       RGBColor[0, 0., 0.7], 13}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689035707*^9},
+ CellChangeTimes->{3.940889680244128*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"b96f7f6e-a9c4-48fa-a733-9ca549a66802"],
+In[2]:=",ExpressionUUID->"3b1e98f1-ccbc-40b9-9608-43babb12088b"],
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689037024*^9},
+ CellChangeTimes->{3.94088968024585*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"5a4c91c4-fece-46e0-a7ca-158d6150e019"],
+In[2]:=",ExpressionUUID->"ae165d36-ddf3-4b54-9b66-0b0bd6caaddd"],
 
 Cell[BoxData[
  InterpretationBox[
   RowBox[{
-   GraphicsBox[{
-     {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
-      {Thickness[0.025]}, 
-      {Thickness[0.025]}, 
-      {Thickness[0.025]}, 
-      {RGBColor[0.5, 0.3, 0.9], Thickness[0.025], 
-       LineBox[{{0., 1.}, {-1., 0.}}]}, 
-      {RGBColor[0.5, 0.3, 0.9], Thickness[0.025], 
-       LineBox[{{0., 1.}, {0., -1.}}]}, 
-      {RGBColor[0.5, 0.3, 0.9], Thickness[0.025], 
-       LineBox[{{-1., 0.}, {0., -1.}}]}}, 
-     {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
-      {GrayLevel[1], EdgeForm[GrayLevel[0]], DiskBox[{1., 0.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["1", {1., 0.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["1", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}, 
-      {GrayLevel[1], EdgeForm[GrayLevel[0]], DiskBox[{0., 1.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["2", {0., 1.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["1", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}, 
-      {GrayLevel[1], EdgeForm[GrayLevel[0]], DiskBox[{-1., 0.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["3", {-1., 0.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["1", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}, 
-      {GrayLevel[1], EdgeForm[GrayLevel[0]], DiskBox[{0., -1.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["4", {0., -1.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["1", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}}},
+   GraphicsBox[{{
+      {Hue[0.6, 0.7, 0.5], Opacity[0.7], {}, {}, {}, {
+        {RGBColor[1, 0.15, 0.15], Thickness[0.005], 
+         LineBox[{{0.017677669529663688`, 
+          0.9823223304703363}, {-0.9823223304703363, \
+-0.017677669529663688`}}]}, 
+        {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+         LineBox[{{-0.017677669529663688`, 
+          1.0176776695296637`}, {-1.0176776695296637`, 
+          0.017677669529663688`}}]}}, {
+        {RGBColor[1, 0.15, 0.15], Thickness[0.005], 
+         LineBox[{{0.025, 1.}, {0.025, -1.}}]}, 
+        {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+         LineBox[{{-0.025, 1.}, {-0.025, -1.}}]}}, {
+        {RGBColor[1, 0.15, 0.15], Thickness[0.005], 
+         LineBox[{{-0.9823223304703363, 0.017677669529663688`}, {
+          0.017677669529663688`, -0.9823223304703363}}]}, 
+        {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+         LineBox[{{-1.0176776695296637`, -0.017677669529663688`}, \
+{-0.017677669529663688`, -1.0176776695296637`}}]}}}, 
+      {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
+       {EdgeForm[GrayLevel[1]], FaceForm[GrayLevel[1]], 
+        DiskBox[{1., 0.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["1", {1., 0.}],
+          FontSize->20]}}, 
+       {EdgeForm[GrayLevel[1]], FaceForm[GrayLevel[1]], 
+        DiskBox[{0., 1.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["2", {0., 1.}],
+          FontSize->20]}}, 
+       {EdgeForm[GrayLevel[1]], FaceForm[GrayLevel[1]], 
+        DiskBox[{-1., 0.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["3", {-1., 0.}],
+          FontSize->20]}}, 
+       {EdgeForm[GrayLevel[1]], FaceForm[GrayLevel[1]], 
+        DiskBox[{0., -1.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["4", {0., -1.}],
+          FontSize->20]}}}}, 
+     {RGBColor[0, 1, 0], 
+      StyleBox[InsetBox[
+        StyleBox["1",
+         StripOnInput->False,
+         LineColor->RGBColor[0, 0.5, 0],
+         FrontFaceColor->RGBColor[0, 0.5, 0],
+         BackFaceColor->RGBColor[0, 0.5, 0],
+         GraphicsColor->RGBColor[0, 0.5, 0],
+         FontColor->RGBColor[0, 0.5, 0]], {1.1, -1.2}],
+       FontSize->18]}},
     FormatType->TraditionalForm,
     FrameTicks->None,
     ImageSize->{240, 240}], "\[InvisibleSpace]", 
-   GraphicsBox[{
-     {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
-      {Thickness[0.025]}, 
-      {RGBColor[0.2, 0.7, 1], Thickness[0.025], 
-       LineBox[{{1., 0.}, {-1., 0.}}]}, 
-      {RGBColor[0.2, 0.7, 1], Thickness[0.025], 
-       LineBox[{{1., 0.}, {0., -1.}}]}, 
-      {RGBColor[1, 0.3, 0.3], Thickness[0.025], 
-       LineBox[{{0., 1.}, {-1., 0.}}]}, 
-      {RGBColor[1, 0.3, 0.3], Thickness[0.025], 
-       LineBox[{{0., 1.}, {0., -1.}}]}, 
-      {RGBColor[0.5, 0.3, 0.9], Thickness[0.025], 
-       LineBox[{{-1., 0.}, {0., -1.}}]}}, 
-     {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
-      {GrayLevel[1], EdgeForm[GrayLevel[0]], DiskBox[{1., 0.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["1", {1., 0.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["2", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}, 
-      {GrayLevel[1], EdgeForm[GrayLevel[0]], DiskBox[{0., 1.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["2", {0., 1.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["2", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}, 
-      {GrayLevel[1], EdgeForm[GrayLevel[0]], DiskBox[{-1., 0.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["3", {-1., 0.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["2", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}, 
-      {GrayLevel[1], EdgeForm[GrayLevel[0]], DiskBox[{0., -1.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["4", {0., -1.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["2", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}}},
+   GraphicsBox[{{
+      {Hue[0.6, 0.7, 0.5], Opacity[0.7], {}, 
+       {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+        LineBox[{{1., 0.}, {-1., 0.}}]}, 
+       {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+        LineBox[{{1., 0.}, {0., -1.}}]}, 
+       {RGBColor[1, 0.15, 0.15], Thickness[0.005], 
+        LineBox[{{0., 1.}, {-1., 0.}}]}, 
+       {RGBColor[1, 0.15, 0.15], Thickness[0.005], 
+        LineBox[{{0., 1.}, {0., -1.}}]}, {
+        {RGBColor[1, 0.15, 0.15], Thickness[0.005], 
+         LineBox[{{-0.9823223304703363, 0.017677669529663688`}, {
+          0.017677669529663688`, -0.9823223304703363}}]}, 
+        {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+         LineBox[{{-1.0176776695296637`, -0.017677669529663688`}, \
+{-0.017677669529663688`, -1.0176776695296637`}}]}}}, 
+      {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
+       {EdgeForm[GrayLevel[1]], FaceForm[GrayLevel[1]], 
+        DiskBox[{1., 0.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["1", {1., 0.}],
+          FontSize->20]}}, 
+       {EdgeForm[GrayLevel[1]], FaceForm[GrayLevel[1]], 
+        DiskBox[{0., 1.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["2", {0., 1.}],
+          FontSize->20]}}, 
+       {EdgeForm[GrayLevel[1]], FaceForm[GrayLevel[1]], 
+        DiskBox[{-1., 0.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["3", {-1., 0.}],
+          FontSize->20]}}, 
+       {EdgeForm[GrayLevel[1]], FaceForm[GrayLevel[1]], 
+        DiskBox[{0., -1.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["4", {0., -1.}],
+          FontSize->20]}}}}, 
+     {RGBColor[0, 1, 0], 
+      StyleBox[InsetBox[
+        StyleBox["2",
+         StripOnInput->False,
+         LineColor->RGBColor[0, 0.5, 0],
+         FrontFaceColor->RGBColor[0, 0.5, 0],
+         BackFaceColor->RGBColor[0, 0.5, 0],
+         GraphicsColor->RGBColor[0, 0.5, 0],
+         FontColor->RGBColor[0, 0.5, 0]], {1.1, -1.2}],
+       FontSize->18]}},
     FormatType->TraditionalForm,
     FrameTicks->None,
     ImageSize->{240, 240}], "\[InvisibleSpace]", 
-   GraphicsBox[{
-     {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
-      {RGBColor[0.2, 0.7, 1], Thickness[0.025], 
-       LineBox[{{1., 0.}, {0., 1.}}]}, 
-      {RGBColor[0.2, 0.7, 1], Thickness[0.025], 
-       LineBox[{{1., 0.}, {-1., 0.}}]}, 
-      {RGBColor[0.2, 0.7, 1], Thickness[0.025], 
-       LineBox[{{1., 0.}, {0., -1.}}]}, 
-      {RGBColor[0.5, 0.3, 0.9], Thickness[0.025], 
-       LineBox[{{0., 1.}, {-1., 0.}}]}, 
-      {RGBColor[0.5, 0.3, 0.9], Thickness[0.025], 
-       LineBox[{{0., 1.}, {0., -1.}}]}, 
-      {RGBColor[0.5, 0.3, 0.9], Thickness[0.025], 
-       LineBox[{{-1., 0.}, {0., -1.}}]}}, 
-     {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
-      {RGBColor[0.2, 0.7, 1], EdgeForm[GrayLevel[0]], DiskBox[{1., 0.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["1", {1., 0.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["3", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}, 
-      {RGBColor[0.2, 0.7, 1], EdgeForm[GrayLevel[0]], DiskBox[{0., 1.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["2", {0., 1.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["3", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}, 
-      {RGBColor[0.2, 0.7, 1], EdgeForm[GrayLevel[0]], 
-       DiskBox[{-1., 0.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["3", {-1., 0.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["3", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}, 
-      {RGBColor[0.2, 0.7, 1], EdgeForm[GrayLevel[0]], 
-       DiskBox[{0., -1.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["4", {0., -1.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["3", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}}},
+   GraphicsBox[{{
+      {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
+       {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+        LineBox[{{1., 0.}, {0., 1.}}]}, 
+       {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+        LineBox[{{1., 0.}, {-1., 0.}}]}, 
+       {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+        LineBox[{{1., 0.}, {0., -1.}}]}, {
+        {RGBColor[1, 0.15, 0.15], Thickness[0.005], 
+         LineBox[{{0.017677669529663688`, 
+          0.9823223304703363}, {-0.9823223304703363, \
+-0.017677669529663688`}}]}, 
+        {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+         LineBox[{{-0.017677669529663688`, 
+          1.0176776695296637`}, {-1.0176776695296637`, 
+          0.017677669529663688`}}]}}, {
+        {RGBColor[1, 0.15, 0.15], Thickness[0.005], 
+         LineBox[{{0.025, 1.}, {0.025, -1.}}]}, 
+        {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+         LineBox[{{-0.025, 1.}, {-0.025, -1.}}]}}, {
+        {RGBColor[1, 0.15, 0.15], Thickness[0.005], 
+         LineBox[{{-0.9823223304703363, 0.017677669529663688`}, {
+          0.017677669529663688`, -0.9823223304703363}}]}, 
+        {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+         LineBox[{{-1.0176776695296637`, -0.017677669529663688`}, \
+{-0.017677669529663688`, -1.0176776695296637`}}]}}}, 
+      {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
+       {EdgeForm[{RGBColor[0, 0.05, 1], Thickness[0.005], 
+        Dashing[{0.02, 0.02}]}], FaceForm[GrayLevel[1]], 
+        DiskBox[{1., 0.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["1", {1., 0.}],
+          FontSize->20]}}, 
+       {EdgeForm[{RGBColor[0, 0.05, 1], Thickness[0.005], 
+        Dashing[{0.02, 0.02}]}], FaceForm[GrayLevel[1]], 
+        DiskBox[{0., 1.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["2", {0., 1.}],
+          FontSize->20]}}, 
+       {EdgeForm[{RGBColor[0, 0.05, 1], Thickness[0.005], 
+        Dashing[{0.02, 0.02}]}], FaceForm[GrayLevel[1]], 
+        DiskBox[{-1., 0.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["3", {-1., 0.}],
+          FontSize->20]}}, 
+       {EdgeForm[{RGBColor[0, 0.05, 1], Thickness[0.005], 
+        Dashing[{0.02, 0.02}]}], FaceForm[GrayLevel[1]], 
+        DiskBox[{0., -1.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["4", {0., -1.}],
+          FontSize->20]}}}}, 
+     {RGBColor[0, 1, 0], 
+      StyleBox[InsetBox[
+        StyleBox["3",
+         StripOnInput->False,
+         LineColor->RGBColor[0, 0.5, 0],
+         FrontFaceColor->RGBColor[0, 0.5, 0],
+         BackFaceColor->RGBColor[0, 0.5, 0],
+         GraphicsColor->RGBColor[0, 0.5, 0],
+         FontColor->RGBColor[0, 0.5, 0]], {1.1, -1.2}],
+       FontSize->18]}},
     FormatType->TraditionalForm,
     FrameTicks->None,
     ImageSize->{240, 240}], "\[InvisibleSpace]", 
-   GraphicsBox[{
-     {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
-      {RGBColor[0.5, 0.3, 0.9], Thickness[0.025], 
-       LineBox[{{1., 0.}, {0., 1.}}]}, 
-      {RGBColor[0.5, 0.3, 0.9], Thickness[0.025], 
-       LineBox[{{1., 0.}, {-1., 0.}}]}, 
-      {RGBColor[0.5, 0.3, 0.9], Thickness[0.025], 
-       LineBox[{{1., 0.}, {0., -1.}}]}, 
-      {RGBColor[0.5, 0.3, 0.9], Thickness[0.025], 
-       LineBox[{{0., 1.}, {-1., 0.}}]}, 
-      {RGBColor[0.5, 0.3, 0.9], Thickness[0.025], 
-       LineBox[{{0., 1.}, {0., -1.}}]}, 
-      {RGBColor[0.5, 0.3, 0.9], Thickness[0.025], 
-       LineBox[{{-1., 0.}, {0., -1.}}]}}, 
-     {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
-      {GrayLevel[1], EdgeForm[GrayLevel[0]], DiskBox[{1., 0.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["1", {1., 0.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["4", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}, 
-      {GrayLevel[1], EdgeForm[GrayLevel[0]], DiskBox[{0., 1.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["2", {0., 1.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["4", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}, 
-      {GrayLevel[1], EdgeForm[GrayLevel[0]], DiskBox[{-1., 0.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["3", {-1., 0.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["4", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}, 
-      {GrayLevel[1], EdgeForm[GrayLevel[0]], DiskBox[{0., -1.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["4", {0., -1.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["4", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}}},
+   GraphicsBox[{{
+      {Hue[0.6, 0.7, 0.5], Opacity[0.7], {
+        {RGBColor[1, 0.15, 0.15], Thickness[0.005], 
+         LineBox[{{
+          0.9823223304703363, -0.017677669529663688`}, \
+{-0.017677669529663688`, 0.9823223304703363}}]}, 
+        {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+         LineBox[{{1.0176776695296637`, 0.017677669529663688`}, {
+          0.017677669529663688`, 1.0176776695296637`}}]}}, {
+        {RGBColor[1, 0.15, 0.15], Thickness[0.005], 
+         LineBox[{{1., -0.025}, {-1., -0.025}}]}, 
+        {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+         LineBox[{{1., 0.025}, {-1., 0.025}}]}}, {
+        {RGBColor[1, 0.15, 0.15], Thickness[0.005], 
+         LineBox[{{1.0176776695296637`, -0.017677669529663688`}, {
+          0.017677669529663688`, -1.0176776695296637`}}]}, 
+        {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+         LineBox[{{0.9823223304703363, 
+          0.017677669529663688`}, {-0.017677669529663688`, \
+-0.9823223304703363}}]}}, {
+        {RGBColor[1, 0.15, 0.15], Thickness[0.005], 
+         LineBox[{{0.017677669529663688`, 
+          0.9823223304703363}, {-0.9823223304703363, \
+-0.017677669529663688`}}]}, 
+        {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+         LineBox[{{-0.017677669529663688`, 
+          1.0176776695296637`}, {-1.0176776695296637`, 
+          0.017677669529663688`}}]}}, {
+        {RGBColor[1, 0.15, 0.15], Thickness[0.005], 
+         LineBox[{{0.025, 1.}, {0.025, -1.}}]}, 
+        {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+         LineBox[{{-0.025, 1.}, {-0.025, -1.}}]}}, {
+        {RGBColor[1, 0.15, 0.15], Thickness[0.005], 
+         LineBox[{{-0.9823223304703363, 0.017677669529663688`}, {
+          0.017677669529663688`, -0.9823223304703363}}]}, 
+        {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+         LineBox[{{-1.0176776695296637`, -0.017677669529663688`}, \
+{-0.017677669529663688`, -1.0176776695296637`}}]}}}, 
+      {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
+       {EdgeForm[GrayLevel[1]], FaceForm[GrayLevel[1]], 
+        DiskBox[{1., 0.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["1", {1., 0.}],
+          FontSize->20]}}, 
+       {EdgeForm[GrayLevel[1]], FaceForm[GrayLevel[1]], 
+        DiskBox[{0., 1.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["2", {0., 1.}],
+          FontSize->20]}}, 
+       {EdgeForm[GrayLevel[1]], FaceForm[GrayLevel[1]], 
+        DiskBox[{-1., 0.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["3", {-1., 0.}],
+          FontSize->20]}}, 
+       {EdgeForm[GrayLevel[1]], FaceForm[GrayLevel[1]], 
+        DiskBox[{0., -1.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["4", {0., -1.}],
+          FontSize->20]}}}}, 
+     {RGBColor[0, 1, 0], 
+      StyleBox[InsetBox[
+        StyleBox["4",
+         StripOnInput->False,
+         LineColor->RGBColor[0, 0.5, 0],
+         FrontFaceColor->RGBColor[0, 0.5, 0],
+         BackFaceColor->RGBColor[0, 0.5, 0],
+         GraphicsColor->RGBColor[0, 0.5, 0],
+         FontColor->RGBColor[0, 0.5, 0]], {1.1, -1.2}],
+       FontSize->18]}},
     FormatType->TraditionalForm,
     FrameTicks->None,
     ImageSize->{240, 240}], "\[InvisibleSpace]", 
-   GraphicsBox[{
-     {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
-      {RGBColor[0.2, 0.7, 1], Thickness[0.025], 
-       LineBox[{{1., 0.}, {0., 1.}}]}, 
-      {Thickness[0.025]}, 
-      {Thickness[0.025]}, 
-      {RGBColor[1, 0.3, 0.3], Thickness[0.025], 
-       LineBox[{{-1., 0.}, {0., -1.}}]}}, 
-     {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
-      {RGBColor[0.2, 0.7, 1], EdgeForm[GrayLevel[0]], DiskBox[{1., 0.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["1", {1., 0.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["5", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}, 
-      {RGBColor[0.2, 0.7, 1], EdgeForm[GrayLevel[0]], DiskBox[{0., 1.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["2", {0., 1.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["5", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}, 
-      {RGBColor[1, 0.3, 0.3], EdgeForm[GrayLevel[0]], 
-       DiskBox[{-1., 0.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["3", {-1., 0.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["5", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}, 
-      {RGBColor[1, 0.3, 0.3], EdgeForm[GrayLevel[0]], 
-       DiskBox[{0., -1.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["4", {0., -1.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["5", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}}},
+   GraphicsBox[{{
+      {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
+       {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+        LineBox[{{1., 0.}, {0., 1.}}]}, {}, {}, 
+       {RGBColor[1, 0.15, 0.15], Thickness[0.005], 
+        LineBox[{{-1., 0.}, {0., -1.}}]}}, 
+      {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
+       {EdgeForm[{RGBColor[0, 0.05, 1], Thickness[0.005], 
+        Dashing[{0.02, 0.02}]}], FaceForm[GrayLevel[1]], 
+        DiskBox[{1., 0.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["1", {1., 0.}],
+          FontSize->20]}}, 
+       {EdgeForm[{RGBColor[0, 0.05, 1], Thickness[0.005], 
+        Dashing[{0.02, 0.02}]}], FaceForm[GrayLevel[1]], 
+        DiskBox[{0., 1.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["2", {0., 1.}],
+          FontSize->20]}}, 
+       {EdgeForm[{RGBColor[1, 0.15, 0.15], Thickness[0.005]}], FaceForm[
+        GrayLevel[1]], DiskBox[{-1., 0.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["3", {-1., 0.}],
+          FontSize->20]}}, 
+       {EdgeForm[{RGBColor[1, 0.15, 0.15], Thickness[0.005]}], FaceForm[
+        GrayLevel[1]], DiskBox[{0., -1.}, 0.2], 
+        {GrayLevel[0], 
+         StyleBox[InsetBox["4", {0., -1.}],
+          FontSize->20]}}}}, 
+     {RGBColor[0, 1, 0], 
+      StyleBox[InsetBox[
+        StyleBox["5",
+         StripOnInput->False,
+         LineColor->RGBColor[0, 0.5, 0],
+         FrontFaceColor->RGBColor[0, 0.5, 0],
+         BackFaceColor->RGBColor[0, 0.5, 0],
+         GraphicsColor->RGBColor[0, 0.5, 0],
+         FontColor->RGBColor[0, 0.5, 0]], {1.1, -1.2}],
+       FontSize->18]}},
     FormatType->TraditionalForm,
     FrameTicks->None,
     ImageSize->{240, 240}], "\[InvisibleSpace]", 
-   GraphicsBox[{
-     {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
-      {RGBColor[1, 0.3, 0.3], Thickness[0.025], 
-       LineBox[{{1., 0.}, {0., 1.}}]}, 
-      {Thickness[0.025]}, 
-      {RGBColor[0.2, 0.7, 1], Thickness[0.025], 
-       LineBox[{{1., 0.}, {0., -1.}}]}, 
-      {RGBColor[0.2, 0.7, 1], Thickness[0.025], 
-       LineBox[{{0., 1.}, {-1., 0.}}]}, 
-      {RGBColor[1, 0.3, 0.3], Thickness[0.025], 
-       LineBox[{{-1., 0.}, {0., -1.}}]}}, 
-     {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
-      {RGBColor[0.5, 0.3, 0.9], EdgeForm[GrayLevel[0]], 
-       DiskBox[{1., 0.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["1", {1., 0.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["6", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}, 
-      {RGBColor[0.5, 0.3, 0.9], EdgeForm[GrayLevel[0]], 
-       DiskBox[{0., 1.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["2", {0., 1.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["6", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}, 
-      {RGBColor[0.5, 0.3, 0.9], EdgeForm[GrayLevel[0]], 
-       DiskBox[{-1., 0.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["3", {-1., 0.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["6", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}, 
-      {RGBColor[0.5, 0.3, 0.9], EdgeForm[GrayLevel[0]], 
-       DiskBox[{0., -1.}, 0.24], 
-       {GrayLevel[0], 
-        StyleBox[{InsetBox["4", {0., -1.}], 
-          {RGBColor[0, 0.5, 0], Opacity[0.5], 
-           StyleBox[InsetBox["6", {1.1, -1}],
-            FontSize->24]}},
-         FontSize->28,
-         FontWeight->Bold]}}}},
+   GraphicsBox[{{
+      {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
+       {RGBColor[1, 0.15, 0.15], Thickness[0.005], 
+        LineBox[{{1., 0.}, {0., 1.}}]}, {}, 
+       {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+        LineBox[{{1., 0.}, {0., -1.}}]}, 
+       {RGBColor[0, 0.05, 1], Thickness[0.005], Dashing[{0.01, 0.02}], 
+        LineBox[{{0., 1.}, {-1., 0.}}]}, 
+       {RGBColor[1, 0.15, 0.15], Thickness[0.005], 
+        LineBox[{{-1., 0.}, {0., -1.}}]}}, 
+      {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], {
+        {EdgeForm[{RGBColor[0, 0.05, 1], Thickness[0.005], 
+         Dashing[{0.02, 0.02}]}], FaceForm[GrayLevel[1]], 
+         DiskBox[{1., 0.}, 0.2]}, 
+        {EdgeForm[{RGBColor[1, 0.15, 0.15], Thickness[0.005], Dashing[None]}],
+          FaceForm[GrayLevel[1]], DiskBox[{1., 0.}, 0.15], 
+         {GrayLevel[0], 
+          StyleBox[InsetBox["1", {1., 0.}],
+           FontSize->20]}}}, {
+        {EdgeForm[{RGBColor[0, 0.05, 1], Thickness[0.005], 
+         Dashing[{0.02, 0.02}]}], FaceForm[GrayLevel[1]], 
+         DiskBox[{0., 1.}, 0.2]}, 
+        {EdgeForm[{RGBColor[1, 0.15, 0.15], Thickness[0.005], Dashing[None]}],
+          FaceForm[GrayLevel[1]], DiskBox[{0., 1.}, 0.15], 
+         {GrayLevel[0], 
+          StyleBox[InsetBox["2", {0., 1.}],
+           FontSize->20]}}}, {
+        {EdgeForm[{RGBColor[0, 0.05, 1], Thickness[0.005], 
+         Dashing[{0.02, 0.02}]}], FaceForm[GrayLevel[1]], 
+         DiskBox[{-1., 0.}, 0.2]}, 
+        {EdgeForm[{RGBColor[1, 0.15, 0.15], Thickness[0.005], Dashing[None]}],
+          FaceForm[GrayLevel[1]], DiskBox[{-1., 0.}, 0.15], 
+         {GrayLevel[0], 
+          StyleBox[InsetBox["3", {-1., 0.}],
+           FontSize->20]}}}, {
+        {EdgeForm[{RGBColor[0, 0.05, 1], Thickness[0.005], 
+         Dashing[{0.02, 0.02}]}], FaceForm[GrayLevel[1]], 
+         DiskBox[{0., -1.}, 0.2]}, 
+        {EdgeForm[{RGBColor[1, 0.15, 0.15], Thickness[0.005], Dashing[None]}],
+          FaceForm[GrayLevel[1]], DiskBox[{0., -1.}, 0.15], 
+         {GrayLevel[0], 
+          StyleBox[InsetBox["4", {0., -1.}],
+           FontSize->20]}}}}}, 
+     {RGBColor[0, 1, 0], 
+      StyleBox[InsetBox[
+        StyleBox["6",
+         StripOnInput->False,
+         LineColor->RGBColor[0, 0.5, 0],
+         FrontFaceColor->RGBColor[0, 0.5, 0],
+         BackFaceColor->RGBColor[0, 0.5, 0],
+         GraphicsColor->RGBColor[0, 0.5, 0],
+         FontColor->RGBColor[0, 0.5, 0]], {1.1, -1.2}],
+       FontSize->18]}},
     FormatType->TraditionalForm,
     FrameTicks->None,
     ImageSize->{240, 240}]}],
   SequenceForm[
-   Graphics[{{
-      Directive[
-       Opacity[0.7], 
-       Hue[0.6, 0.7, 0.5]], {
-       Thickness[0.025]}, {
-       Thickness[0.025]}, {
-       Thickness[0.025]}, {
-       Thickness[0.025], 
-       RGBColor[0.5, 0.3, 0.9], 
-       Line[{{0., 1.}, {-1., 0.}}]}, {
-       Thickness[0.025], 
-       RGBColor[0.5, 0.3, 0.9], 
-       Line[{{0., 1.}, {0., -1.}}]}, {
-       Thickness[0.025], 
-       RGBColor[0.5, 0.3, 0.9], 
-       Line[{{-1., 0.}, {0., -1.}}]}}, {
-      Directive[
-       Hue[0.6, 0.2, 0.8], 
-       EdgeForm[
-        Directive[
-         GrayLevel[0], 
-         Opacity[0.7]]]], {
-       GrayLevel[1], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{1., 0.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[1, {1., 0.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[1, {1.1, -1}]}, {
-       GrayLevel[1], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{0., 1.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[2, {0., 1.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[1, {1.1, -1}]}, {
-       GrayLevel[1], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{-1., 0.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[3, {-1., 0.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[1, {1.1, -1}]}, {
-       GrayLevel[1], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{0., -1.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[4, {0., -1.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[1, {1.1, -1}]}}}, {
+   Graphics[{{{
+       Directive[
+        Opacity[0.7], 
+        Hue[0.6, 0.7, 0.5]], {}, {}, {}, {{
+         RGBColor[1, 0.15, 0.15], 
+         Thickness[0.005], 
+         Line[{{0.017677669529663688`, 
+          0.9823223304703363}, {-0.9823223304703363, \
+-0.017677669529663688`}}]}, {
+         RGBColor[0, 0.05, 1], 
+         Thickness[0.005], 
+         Dashing[{0.01, 0.02}], 
+         Line[{{-0.017677669529663688`, 
+          1.0176776695296637`}, {-1.0176776695296637`, 
+          0.017677669529663688`}}]}}, {{
+         RGBColor[1, 0.15, 0.15], 
+         Thickness[0.005], 
+         Line[{{0.025, 1.}, {0.025, -1.}}]}, {
+         RGBColor[0, 0.05, 1], 
+         Thickness[0.005], 
+         Dashing[{0.01, 0.02}], 
+         Line[{{-0.025, 1.}, {-0.025, -1.}}]}}, {{
+         RGBColor[1, 0.15, 0.15], 
+         Thickness[0.005], 
+         Line[{{-0.9823223304703363, 0.017677669529663688`}, {
+          0.017677669529663688`, -0.9823223304703363}}]}, {
+         RGBColor[0, 0.05, 1], 
+         Thickness[0.005], 
+         Dashing[{0.01, 0.02}], 
+         Line[{{-1.0176776695296637`, -0.017677669529663688`}, \
+{-0.017677669529663688`, -1.0176776695296637`}}]}}}, {
+       Directive[
+        Hue[0.6, 0.2, 0.8], 
+        EdgeForm[
+         Directive[
+          GrayLevel[0], 
+          Opacity[0.7]]]], {
+        EdgeForm[
+         GrayLevel[1]], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{1., 0.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[1, {1., 0.}]}, {
+        EdgeForm[
+         GrayLevel[1]], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{0., 1.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[2, {0., 1.}]}, {
+        EdgeForm[
+         GrayLevel[1]], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{-1., 0.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[3, {-1., 0.}]}, {
+        EdgeForm[
+         GrayLevel[1]], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{0., -1.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[4, {0., -1.}]}}}, {
+      RGBColor[0, 1, 0], FontSize -> 18, 
+      Text[
+       Style[1, 
+        RGBColor[0, 0.5, 0]], {1.1, -1.2}]}}, {
     FormatType -> TraditionalForm, FrameTicks -> None, 
      ImageSize -> {240, 240}}], 
-   Graphics[{{
-      Directive[
-       Opacity[0.7], 
-       Hue[0.6, 0.7, 0.5]], {
-       Thickness[0.025]}, {
-       RGBColor[0.2, 0.7, 1], 
-       Thickness[0.025], 
-       Line[{{1., 0.}, {-1., 0.}}]}, {
-       RGBColor[0.2, 0.7, 1], 
-       Thickness[0.025], 
-       Line[{{1., 0.}, {0., -1.}}]}, {
-       RGBColor[1, 0.3, 0.3], 
-       Thickness[0.025], 
-       Line[{{0., 1.}, {-1., 0.}}]}, {
-       RGBColor[1, 0.3, 0.3], 
-       Thickness[0.025], 
-       Line[{{0., 1.}, {0., -1.}}]}, {
-       Thickness[0.025], 
-       RGBColor[0.5, 0.3, 0.9], 
-       Line[{{-1., 0.}, {0., -1.}}]}}, {
-      Directive[
-       Hue[0.6, 0.2, 0.8], 
-       EdgeForm[
-        Directive[
-         GrayLevel[0], 
-         Opacity[0.7]]]], {
-       GrayLevel[1], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{1., 0.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[1, {1., 0.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[2, {1.1, -1}]}, {
-       GrayLevel[1], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{0., 1.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[2, {0., 1.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[2, {1.1, -1}]}, {
-       GrayLevel[1], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{-1., 0.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[3, {-1., 0.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[2, {1.1, -1}]}, {
-       GrayLevel[1], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{0., -1.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[4, {0., -1.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[2, {1.1, -1}]}}}, {
+   Graphics[{{{
+       Directive[
+        Opacity[0.7], 
+        Hue[0.6, 0.7, 0.5]], {}, {
+        RGBColor[0, 0.05, 1], 
+        Thickness[0.005], 
+        Dashing[{0.01, 0.02}], 
+        Line[{{1., 0.}, {-1., 0.}}]}, {
+        RGBColor[0, 0.05, 1], 
+        Thickness[0.005], 
+        Dashing[{0.01, 0.02}], 
+        Line[{{1., 0.}, {0., -1.}}]}, {
+        RGBColor[1, 0.15, 0.15], 
+        Thickness[0.005], 
+        Line[{{0., 1.}, {-1., 0.}}]}, {
+        RGBColor[1, 0.15, 0.15], 
+        Thickness[0.005], 
+        Line[{{0., 1.}, {0., -1.}}]}, {{
+         RGBColor[1, 0.15, 0.15], 
+         Thickness[0.005], 
+         Line[{{-0.9823223304703363, 0.017677669529663688`}, {
+          0.017677669529663688`, -0.9823223304703363}}]}, {
+         RGBColor[0, 0.05, 1], 
+         Thickness[0.005], 
+         Dashing[{0.01, 0.02}], 
+         Line[{{-1.0176776695296637`, -0.017677669529663688`}, \
+{-0.017677669529663688`, -1.0176776695296637`}}]}}}, {
+       Directive[
+        Hue[0.6, 0.2, 0.8], 
+        EdgeForm[
+         Directive[
+          GrayLevel[0], 
+          Opacity[0.7]]]], {
+        EdgeForm[
+         GrayLevel[1]], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{1., 0.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[1, {1., 0.}]}, {
+        EdgeForm[
+         GrayLevel[1]], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{0., 1.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[2, {0., 1.}]}, {
+        EdgeForm[
+         GrayLevel[1]], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{-1., 0.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[3, {-1., 0.}]}, {
+        EdgeForm[
+         GrayLevel[1]], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{0., -1.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[4, {0., -1.}]}}}, {
+      RGBColor[0, 1, 0], FontSize -> 18, 
+      Text[
+       Style[2, 
+        RGBColor[0, 0.5, 0]], {1.1, -1.2}]}}, {
     FormatType -> TraditionalForm, FrameTicks -> None, 
      ImageSize -> {240, 240}}], 
-   Graphics[{{
-      Directive[
-       Opacity[0.7], 
-       Hue[0.6, 0.7, 0.5]], {
-       RGBColor[0.2, 0.7, 1], 
-       Thickness[0.025], 
-       Line[{{1., 0.}, {0., 1.}}]}, {
-       RGBColor[0.2, 0.7, 1], 
-       Thickness[0.025], 
-       Line[{{1., 0.}, {-1., 0.}}]}, {
-       RGBColor[0.2, 0.7, 1], 
-       Thickness[0.025], 
-       Line[{{1., 0.}, {0., -1.}}]}, {
-       Thickness[0.025], 
-       RGBColor[0.5, 0.3, 0.9], 
-       Line[{{0., 1.}, {-1., 0.}}]}, {
-       Thickness[0.025], 
-       RGBColor[0.5, 0.3, 0.9], 
-       Line[{{0., 1.}, {0., -1.}}]}, {
-       Thickness[0.025], 
-       RGBColor[0.5, 0.3, 0.9], 
-       Line[{{-1., 0.}, {0., -1.}}]}}, {
-      Directive[
-       Hue[0.6, 0.2, 0.8], 
-       EdgeForm[
-        Directive[
-         GrayLevel[0], 
-         Opacity[0.7]]]], {
-       RGBColor[0.2, 0.7, 1], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{1., 0.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[1, {1., 0.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[3, {1.1, -1}]}, {
-       RGBColor[0.2, 0.7, 1], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{0., 1.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[2, {0., 1.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[3, {1.1, -1}]}, {
-       RGBColor[0.2, 0.7, 1], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{-1., 0.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[3, {-1., 0.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[3, {1.1, -1}]}, {
-       RGBColor[0.2, 0.7, 1], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{0., -1.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[4, {0., -1.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[3, {1.1, -1}]}}}, {
+   Graphics[{{{
+       Directive[
+        Opacity[0.7], 
+        Hue[0.6, 0.7, 0.5]], {
+        RGBColor[0, 0.05, 1], 
+        Thickness[0.005], 
+        Dashing[{0.01, 0.02}], 
+        Line[{{1., 0.}, {0., 1.}}]}, {
+        RGBColor[0, 0.05, 1], 
+        Thickness[0.005], 
+        Dashing[{0.01, 0.02}], 
+        Line[{{1., 0.}, {-1., 0.}}]}, {
+        RGBColor[0, 0.05, 1], 
+        Thickness[0.005], 
+        Dashing[{0.01, 0.02}], 
+        Line[{{1., 0.}, {0., -1.}}]}, {{
+         RGBColor[1, 0.15, 0.15], 
+         Thickness[0.005], 
+         Line[{{0.017677669529663688`, 
+          0.9823223304703363}, {-0.9823223304703363, \
+-0.017677669529663688`}}]}, {
+         RGBColor[0, 0.05, 1], 
+         Thickness[0.005], 
+         Dashing[{0.01, 0.02}], 
+         Line[{{-0.017677669529663688`, 
+          1.0176776695296637`}, {-1.0176776695296637`, 
+          0.017677669529663688`}}]}}, {{
+         RGBColor[1, 0.15, 0.15], 
+         Thickness[0.005], 
+         Line[{{0.025, 1.}, {0.025, -1.}}]}, {
+         RGBColor[0, 0.05, 1], 
+         Thickness[0.005], 
+         Dashing[{0.01, 0.02}], 
+         Line[{{-0.025, 1.}, {-0.025, -1.}}]}}, {{
+         RGBColor[1, 0.15, 0.15], 
+         Thickness[0.005], 
+         Line[{{-0.9823223304703363, 0.017677669529663688`}, {
+          0.017677669529663688`, -0.9823223304703363}}]}, {
+         RGBColor[0, 0.05, 1], 
+         Thickness[0.005], 
+         Dashing[{0.01, 0.02}], 
+         Line[{{-1.0176776695296637`, -0.017677669529663688`}, \
+{-0.017677669529663688`, -1.0176776695296637`}}]}}}, {
+       Directive[
+        Hue[0.6, 0.2, 0.8], 
+        EdgeForm[
+         Directive[
+          GrayLevel[0], 
+          Opacity[0.7]]]], {
+        EdgeForm[{
+          RGBColor[0, 0.05, 1], 
+          Thickness[0.005], 
+          Dashing[{0.02, 0.02}]}], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{1., 0.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[1, {1., 0.}]}, {
+        EdgeForm[{
+          RGBColor[0, 0.05, 1], 
+          Thickness[0.005], 
+          Dashing[{0.02, 0.02}]}], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{0., 1.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[2, {0., 1.}]}, {
+        EdgeForm[{
+          RGBColor[0, 0.05, 1], 
+          Thickness[0.005], 
+          Dashing[{0.02, 0.02}]}], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{-1., 0.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[3, {-1., 0.}]}, {
+        EdgeForm[{
+          RGBColor[0, 0.05, 1], 
+          Thickness[0.005], 
+          Dashing[{0.02, 0.02}]}], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{0., -1.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[4, {0., -1.}]}}}, {
+      RGBColor[0, 1, 0], FontSize -> 18, 
+      Text[
+       Style[3, 
+        RGBColor[0, 0.5, 0]], {1.1, -1.2}]}}, {
     FormatType -> TraditionalForm, FrameTicks -> None, 
      ImageSize -> {240, 240}}], 
-   Graphics[{{
-      Directive[
-       Opacity[0.7], 
-       Hue[0.6, 0.7, 0.5]], {
-       Thickness[0.025], 
-       RGBColor[0.5, 0.3, 0.9], 
-       Line[{{1., 0.}, {0., 1.}}]}, {
-       Thickness[0.025], 
-       RGBColor[0.5, 0.3, 0.9], 
-       Line[{{1., 0.}, {-1., 0.}}]}, {
-       Thickness[0.025], 
-       RGBColor[0.5, 0.3, 0.9], 
-       Line[{{1., 0.}, {0., -1.}}]}, {
-       Thickness[0.025], 
-       RGBColor[0.5, 0.3, 0.9], 
-       Line[{{0., 1.}, {-1., 0.}}]}, {
-       Thickness[0.025], 
-       RGBColor[0.5, 0.3, 0.9], 
-       Line[{{0., 1.}, {0., -1.}}]}, {
-       Thickness[0.025], 
-       RGBColor[0.5, 0.3, 0.9], 
-       Line[{{-1., 0.}, {0., -1.}}]}}, {
-      Directive[
-       Hue[0.6, 0.2, 0.8], 
-       EdgeForm[
-        Directive[
-         GrayLevel[0], 
-         Opacity[0.7]]]], {
-       GrayLevel[1], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{1., 0.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[1, {1., 0.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[4, {1.1, -1}]}, {
-       GrayLevel[1], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{0., 1.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[2, {0., 1.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[4, {1.1, -1}]}, {
-       GrayLevel[1], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{-1., 0.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[3, {-1., 0.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[4, {1.1, -1}]}, {
-       GrayLevel[1], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{0., -1.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[4, {0., -1.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[4, {1.1, -1}]}}}, {
+   Graphics[{{{
+       Directive[
+        Opacity[0.7], 
+        Hue[0.6, 0.7, 0.5]], {{
+         RGBColor[1, 0.15, 0.15], 
+         Thickness[0.005], 
+         Line[{{
+          0.9823223304703363, -0.017677669529663688`}, \
+{-0.017677669529663688`, 0.9823223304703363}}]}, {
+         RGBColor[0, 0.05, 1], 
+         Thickness[0.005], 
+         Dashing[{0.01, 0.02}], 
+         Line[{{1.0176776695296637`, 0.017677669529663688`}, {
+          0.017677669529663688`, 1.0176776695296637`}}]}}, {{
+         RGBColor[1, 0.15, 0.15], 
+         Thickness[0.005], 
+         Line[{{1., -0.025}, {-1., -0.025}}]}, {
+         RGBColor[0, 0.05, 1], 
+         Thickness[0.005], 
+         Dashing[{0.01, 0.02}], 
+         Line[{{1., 0.025}, {-1., 0.025}}]}}, {{
+         RGBColor[1, 0.15, 0.15], 
+         Thickness[0.005], 
+         Line[{{1.0176776695296637`, -0.017677669529663688`}, {
+          0.017677669529663688`, -1.0176776695296637`}}]}, {
+         RGBColor[0, 0.05, 1], 
+         Thickness[0.005], 
+         Dashing[{0.01, 0.02}], 
+         Line[{{0.9823223304703363, 
+          0.017677669529663688`}, {-0.017677669529663688`, \
+-0.9823223304703363}}]}}, {{
+         RGBColor[1, 0.15, 0.15], 
+         Thickness[0.005], 
+         Line[{{0.017677669529663688`, 
+          0.9823223304703363}, {-0.9823223304703363, \
+-0.017677669529663688`}}]}, {
+         RGBColor[0, 0.05, 1], 
+         Thickness[0.005], 
+         Dashing[{0.01, 0.02}], 
+         Line[{{-0.017677669529663688`, 
+          1.0176776695296637`}, {-1.0176776695296637`, 
+          0.017677669529663688`}}]}}, {{
+         RGBColor[1, 0.15, 0.15], 
+         Thickness[0.005], 
+         Line[{{0.025, 1.}, {0.025, -1.}}]}, {
+         RGBColor[0, 0.05, 1], 
+         Thickness[0.005], 
+         Dashing[{0.01, 0.02}], 
+         Line[{{-0.025, 1.}, {-0.025, -1.}}]}}, {{
+         RGBColor[1, 0.15, 0.15], 
+         Thickness[0.005], 
+         Line[{{-0.9823223304703363, 0.017677669529663688`}, {
+          0.017677669529663688`, -0.9823223304703363}}]}, {
+         RGBColor[0, 0.05, 1], 
+         Thickness[0.005], 
+         Dashing[{0.01, 0.02}], 
+         Line[{{-1.0176776695296637`, -0.017677669529663688`}, \
+{-0.017677669529663688`, -1.0176776695296637`}}]}}}, {
+       Directive[
+        Hue[0.6, 0.2, 0.8], 
+        EdgeForm[
+         Directive[
+          GrayLevel[0], 
+          Opacity[0.7]]]], {
+        EdgeForm[
+         GrayLevel[1]], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{1., 0.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[1, {1., 0.}]}, {
+        EdgeForm[
+         GrayLevel[1]], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{0., 1.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[2, {0., 1.}]}, {
+        EdgeForm[
+         GrayLevel[1]], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{-1., 0.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[3, {-1., 0.}]}, {
+        EdgeForm[
+         GrayLevel[1]], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{0., -1.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[4, {0., -1.}]}}}, {
+      RGBColor[0, 1, 0], FontSize -> 18, 
+      Text[
+       Style[4, 
+        RGBColor[0, 0.5, 0]], {1.1, -1.2}]}}, {
     FormatType -> TraditionalForm, FrameTicks -> None, 
      ImageSize -> {240, 240}}], 
-   Graphics[{{
-      Directive[
-       Opacity[0.7], 
-       Hue[0.6, 0.7, 0.5]], {
-       RGBColor[0.2, 0.7, 1], 
-       Thickness[0.025], 
-       Line[{{1., 0.}, {0., 1.}}]}, {
-       Thickness[0.025]}, {
-       Thickness[0.025]}, {
-       RGBColor[1, 0.3, 0.3], 
-       Thickness[0.025], 
-       Line[{{-1., 0.}, {0., -1.}}]}}, {
-      Directive[
-       Hue[0.6, 0.2, 0.8], 
-       EdgeForm[
-        Directive[
-         GrayLevel[0], 
-         Opacity[0.7]]]], {
-       RGBColor[0.2, 0.7, 1], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{1., 0.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[1, {1., 0.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[5, {1.1, -1}]}, {
-       RGBColor[0.2, 0.7, 1], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{0., 1.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[2, {0., 1.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[5, {1.1, -1}]}, {
-       RGBColor[1, 0.3, 0.3], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{-1., 0.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[3, {-1., 0.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[5, {1.1, -1}]}, {
-       RGBColor[1, 0.3, 0.3], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{0., -1.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[4, {0., -1.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[5, {1.1, -1}]}}}, {
+   Graphics[{{{
+       Directive[
+        Opacity[0.7], 
+        Hue[0.6, 0.7, 0.5]], {
+        RGBColor[0, 0.05, 1], 
+        Thickness[0.005], 
+        Dashing[{0.01, 0.02}], 
+        Line[{{1., 0.}, {0., 1.}}]}, {}, {}, {
+        RGBColor[1, 0.15, 0.15], 
+        Thickness[0.005], 
+        Line[{{-1., 0.}, {0., -1.}}]}}, {
+       Directive[
+        Hue[0.6, 0.2, 0.8], 
+        EdgeForm[
+         Directive[
+          GrayLevel[0], 
+          Opacity[0.7]]]], {
+        EdgeForm[{
+          RGBColor[0, 0.05, 1], 
+          Thickness[0.005], 
+          Dashing[{0.02, 0.02}]}], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{1., 0.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[1, {1., 0.}]}, {
+        EdgeForm[{
+          RGBColor[0, 0.05, 1], 
+          Thickness[0.005], 
+          Dashing[{0.02, 0.02}]}], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{0., 1.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[2, {0., 1.}]}, {
+        EdgeForm[{
+          RGBColor[1, 0.15, 0.15], 
+          Thickness[0.005]}], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{-1., 0.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[3, {-1., 0.}]}, {
+        EdgeForm[{
+          RGBColor[1, 0.15, 0.15], 
+          Thickness[0.005]}], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{0., -1.}, 0.2], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[4, {0., -1.}]}}}, {
+      RGBColor[0, 1, 0], FontSize -> 18, 
+      Text[
+       Style[5, 
+        RGBColor[0, 0.5, 0]], {1.1, -1.2}]}}, {
     FormatType -> TraditionalForm, FrameTicks -> None, 
      ImageSize -> {240, 240}}], 
-   Graphics[{{
-      Directive[
-       Opacity[0.7], 
-       Hue[0.6, 0.7, 0.5]], {
-       RGBColor[1, 0.3, 0.3], 
-       Thickness[0.025], 
-       Line[{{1., 0.}, {0., 1.}}]}, {
-       Thickness[0.025]}, {
-       RGBColor[0.2, 0.7, 1], 
-       Thickness[0.025], 
-       Line[{{1., 0.}, {0., -1.}}]}, {
-       RGBColor[0.2, 0.7, 1], 
-       Thickness[0.025], 
-       Line[{{0., 1.}, {-1., 0.}}]}, {
-       RGBColor[1, 0.3, 0.3], 
-       Thickness[0.025], 
-       Line[{{-1., 0.}, {0., -1.}}]}}, {
-      Directive[
-       Hue[0.6, 0.2, 0.8], 
-       EdgeForm[
-        Directive[
-         GrayLevel[0], 
-         Opacity[0.7]]]], {
-       RGBColor[0.5, 0.3, 0.9], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{1., 0.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[1, {1., 0.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[6, {1.1, -1}]}, {
-       RGBColor[0.5, 0.3, 0.9], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{0., 1.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[2, {0., 1.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[6, {1.1, -1}]}, {
-       RGBColor[0.5, 0.3, 0.9], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{-1., 0.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[3, {-1., 0.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[6, {1.1, -1}]}, {
-       RGBColor[0.5, 0.3, 0.9], 
-       EdgeForm[
-        GrayLevel[0]], 
-       Disk[{0., -1.}, 0.24], 
-       GrayLevel[0], FontSize -> 28, FontWeight -> Bold, 
-       Text[4, {0., -1.}], 
-       Opacity[0.5], 
-       RGBColor[0, 0.5, 0], FontSize -> 24, 
-       Text[6, {1.1, -1}]}}}, {
+   Graphics[{{{
+       Directive[
+        Opacity[0.7], 
+        Hue[0.6, 0.7, 0.5]], {
+        RGBColor[1, 0.15, 0.15], 
+        Thickness[0.005], 
+        Line[{{1., 0.}, {0., 1.}}]}, {}, {
+        RGBColor[0, 0.05, 1], 
+        Thickness[0.005], 
+        Dashing[{0.01, 0.02}], 
+        Line[{{1., 0.}, {0., -1.}}]}, {
+        RGBColor[0, 0.05, 1], 
+        Thickness[0.005], 
+        Dashing[{0.01, 0.02}], 
+        Line[{{0., 1.}, {-1., 0.}}]}, {
+        RGBColor[1, 0.15, 0.15], 
+        Thickness[0.005], 
+        Line[{{-1., 0.}, {0., -1.}}]}}, {
+       Directive[
+        Hue[0.6, 0.2, 0.8], 
+        EdgeForm[
+         Directive[
+          GrayLevel[0], 
+          Opacity[0.7]]]], {
+        EdgeForm[{
+          RGBColor[0, 0.05, 1], 
+          Thickness[0.005], 
+          Dashing[{0.02, 0.02}]}], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{1., 0.}, 0.2], 
+        EdgeForm[{
+          RGBColor[1, 0.15, 0.15], 
+          Thickness[0.005], 
+          Dashing[None]}], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{1., 0.}, 0.15], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[1, {1., 0.}]}, {
+        EdgeForm[{
+          RGBColor[0, 0.05, 1], 
+          Thickness[0.005], 
+          Dashing[{0.02, 0.02}]}], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{0., 1.}, 0.2], 
+        EdgeForm[{
+          RGBColor[1, 0.15, 0.15], 
+          Thickness[0.005], 
+          Dashing[None]}], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{0., 1.}, 0.15], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[2, {0., 1.}]}, {
+        EdgeForm[{
+          RGBColor[0, 0.05, 1], 
+          Thickness[0.005], 
+          Dashing[{0.02, 0.02}]}], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{-1., 0.}, 0.2], 
+        EdgeForm[{
+          RGBColor[1, 0.15, 0.15], 
+          Thickness[0.005], 
+          Dashing[None]}], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{-1., 0.}, 0.15], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[3, {-1., 0.}]}, {
+        EdgeForm[{
+          RGBColor[0, 0.05, 1], 
+          Thickness[0.005], 
+          Dashing[{0.02, 0.02}]}], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{0., -1.}, 0.2], 
+        EdgeForm[{
+          RGBColor[1, 0.15, 0.15], 
+          Thickness[0.005], 
+          Dashing[None]}], 
+        FaceForm[
+         GrayLevel[1]], 
+        Disk[{0., -1.}, 0.15], 
+        GrayLevel[0], FontSize -> 20, 
+        Text[4, {0., -1.}]}}}, {
+      RGBColor[0, 1, 0], FontSize -> 18, 
+      Text[
+       Style[6, 
+        RGBColor[0, 0.5, 0]], {1.1, -1.2}]}}, {
     FormatType -> TraditionalForm, FrameTicks -> None, 
      ImageSize -> {240, 240}}]],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.921542689170848*^9},
+ CellChangeTimes->{3.940889680386623*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"e7d33d83-c839-4e11-85ed-b644a53edb1e"],
+In[2]:=",ExpressionUUID->"a4cc5b9e-2c6a-4c97-8c29-ec3194649142"],
 
 Cell[BoxData[
  InterpretationBox[
   RowBox[{"\<\"Number of possibilities: \"\>", "\[InvisibleSpace]", "6", 
    "\[InvisibleSpace]", "\<\". Total computation time in seconds: \"\>", 
-   "\[InvisibleSpace]", "0.21748`5.7889643178256485", 
+   "\[InvisibleSpace]", "0.249924`5.849352956573567", 
    "\[InvisibleSpace]", "\<\". Time used for Z-matrix sorting, finding \
 possible companion W-matrices, match Z and W matrices to ZW-matrices, \
 applying matrix rules, duplicate ZW-matrix eliminations, and graphing:\"\>", 
    "\[InvisibleSpace]", 
    RowBox[{"{", 
-    RowBox[{"0.015256`4.634985673533925", ",", 
+    RowBox[{"0.023235`4.81768767031086", ",", 
      RowBox[{
-      RowBox[{"-", "3.921571488959705`16.346035125623935*^9"}], "+", 
+      RowBox[{"-", "3.940918480149451`16.348172440522024*^9"}], "+", 
       "mxruletime"}], ",", 
-     RowBox[{"3.921571489006255`16.34603512562909*^9", "-", "mxruletime"}], 
-     ",", "0.155644`5.643677376997538"}], "}"}]}],
+     RowBox[{"3.940918480216898`16.348172440529456*^9", "-", "mxruletime"}], 
+     ",", "0.159212`5.653520791428894"}], "}"}]}],
   SequenceForm[
   "Number of possibilities: ", 6, ". Total computation time in seconds: ", 
-   0.21748`5.7889643178256485, 
+   0.249924`5.849352956573567, 
    ". Time used for Z-matrix sorting, finding possible companion W-matrices, \
 match Z and W matrices to ZW-matrices, applying matrix rules, duplicate \
 ZW-matrix eliminations, and graphing:", {
-   0.015256`4.634985673533925, -3.921571488959705`16.346035125623935*^9 + \
+   0.023235`4.81768767031086, -3.940918480149451`16.348172440522024*^9 + \
 $CellContext`mxruletime, 
-    3.921571489006255`16.34603512562909*^9 - $CellContext`mxruletime, 
-    0.155644`5.643677376997538}],
+    3.940918480216898`16.348172440529456*^9 - $CellContext`mxruletime, 
+    0.159212`5.653520791428894}],
   Editable->False]], "Print",
- CellChangeTimes->{3.913258615840057*^9, 3.913259303053797*^9, 
-  3.913267754279336*^9, 3.913268667750402*^9, 3.913269638444056*^9, 
-  3.913272284627718*^9, 3.913273047653924*^9, 3.913860404086458*^9, 
-  3.914386427487142*^9, 3.9143992974366426`*^9, 3.914399836582261*^9, 
-  3.914400191165937*^9, 3.91440060385109*^9, 3.9144012235551233`*^9, 
-  3.9215426891768723`*^9},
+ CellChangeTimes->{3.9408896804048*^9},
  CellLabel->
   "During evaluation of \
-In[2]:=",ExpressionUUID->"f9b5f4f9-34a2-4d6e-acda-77547961f91e"]
+In[2]:=",ExpressionUUID->"af91a6c4-333e-4998-a563-8471106d3f91"]
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{1280, 747},
-WindowMargins->{{Automatic, -1280}, {0, Automatic}},
+WindowSize->{1204, 747},
+WindowMargins->{{41, Automatic}, {0, Automatic}},
 Magnification:>1.5 Inherited,
 FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
 StyleDefinitions->"Default.nb"
@@ -6342,54 +6405,54 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[557, 20, 184920, 4270, 22832, "Input",ExpressionUUID->"11390359-4331-44d4-a2e6-3a951aaf009f"],
+Cell[557, 20, 191483, 4407, 24103, "Input",ExpressionUUID->"11390359-4331-44d4-a2e6-3a951aaf009f"],
 Cell[CellGroupData[{
-Cell[185502, 4294, 309, 5, 46, "Input",ExpressionUUID->"cc976e35-1761-46e0-8f08-3e2a226ba792"],
+Cell[192065, 4431, 207, 3, 46, "Input",ExpressionUUID->"8cc59c54-9257-449c-bf70-75675c339d54"],
 Cell[CellGroupData[{
-Cell[185836, 4303, 2065, 50, 95, "Print",ExpressionUUID->"f119d8b9-e165-4393-a384-6426db832b91"],
-Cell[187904, 4355, 506, 9, 36, "Print",ExpressionUUID->"30ae982d-cc84-4532-8c45-60c00ab37c51"],
-Cell[188413, 4366, 2013, 50, 95, "Print",ExpressionUUID->"5be31dcf-dfe4-4e09-88f9-63f45ab5dd19"],
-Cell[190429, 4418, 506, 9, 36, "Print",ExpressionUUID->"4704b5bc-c53c-4632-9270-e50f4a6c30bd"],
-Cell[190938, 4429, 2027, 50, 95, "Print",ExpressionUUID->"ec91cd06-7bd9-4bce-b112-93ba22d701f5"],
-Cell[192968, 4481, 506, 9, 36, "Print",ExpressionUUID->"f3c1adc3-b075-49be-829e-d0eae2e72439"],
-Cell[193477, 4492, 1969, 49, 95, "Print",ExpressionUUID->"7e7f705f-7e71-43eb-a8cd-9dbfdef29721"],
-Cell[195449, 4543, 506, 9, 36, "Print",ExpressionUUID->"74015298-1af6-49c2-9656-6830ae13379a"],
-Cell[195958, 4554, 2035, 50, 95, "Print",ExpressionUUID->"1b04b499-e588-4e9e-8a63-ec867a9d7bf8"],
-Cell[197996, 4606, 506, 9, 36, "Print",ExpressionUUID->"1449635d-d714-4158-bde1-86ca029dc02b"],
-Cell[198505, 4617, 2011, 50, 95, "Print",ExpressionUUID->"a5f503ec-e691-4b30-a6d6-15dd368ada33"],
-Cell[200519, 4669, 506, 9, 36, "Print",ExpressionUUID->"f93560bf-90e0-4c58-ae25-ec74b83de097"],
-Cell[201028, 4680, 1997, 50, 95, "Print",ExpressionUUID->"2ff32ec9-d2b7-4c4a-b109-96ede214ddad"],
-Cell[203028, 4732, 508, 9, 36, "Print",ExpressionUUID->"85851890-40c8-4c79-944d-08b5ba8a382d"],
-Cell[203539, 4743, 2019, 50, 95, "Print",ExpressionUUID->"adde99c0-6694-4156-9162-2b94b266ffda"],
-Cell[205561, 4795, 508, 9, 36, "Print",ExpressionUUID->"6f188ab9-912b-496f-b096-a3b962f8d22f"],
-Cell[206072, 4806, 2061, 51, 95, "Print",ExpressionUUID->"17e6b165-8d8b-4875-950f-5790e35435b5"],
-Cell[208136, 4859, 508, 9, 36, "Print",ExpressionUUID->"57a0e0d3-407e-4440-85ca-6524a3121e72"],
-Cell[208647, 4870, 2061, 51, 95, "Print",ExpressionUUID->"7b530a63-778c-486c-9a0a-cb55e1004cb2"],
-Cell[210711, 4923, 506, 9, 36, "Print",ExpressionUUID->"9345f134-24b4-4728-a611-7cc987197264"],
-Cell[211220, 4934, 2053, 51, 95, "Print",ExpressionUUID->"69b5f9d7-7576-4313-9f7f-214d0288d64f"],
-Cell[213276, 4987, 506, 9, 36, "Print",ExpressionUUID->"27cd379f-3770-46c4-88f9-46b0f7226863"],
-Cell[213785, 4998, 1478, 36, 66, "Print",ExpressionUUID->"2afb8b22-cfcb-442b-9507-cafd27e62deb"],
-Cell[215266, 5036, 505, 9, 36, "Print",ExpressionUUID->"7fb8e73c-a98c-4c1c-9872-b0fd5981f267"],
-Cell[215774, 5047, 1963, 49, 95, "Print",ExpressionUUID->"d9a0998c-1eab-48d4-ae05-42b7d9daec6a"],
-Cell[217740, 5098, 506, 9, 36, "Print",ExpressionUUID->"4c16cefb-2586-46b7-9ace-ec72f5f911aa"],
-Cell[218249, 5109, 1981, 49, 95, "Print",ExpressionUUID->"e143fbce-ced4-465b-95f9-57c0c5a7bf51"],
-Cell[220233, 5160, 506, 9, 36, "Print",ExpressionUUID->"ea850656-8a87-4a56-997e-6b4eb55aa63f"],
-Cell[220742, 5171, 1981, 49, 95, "Print",ExpressionUUID->"51de57c0-da9c-4d2a-a3d9-ab42f4d72688"],
-Cell[222726, 5222, 506, 9, 36, "Print",ExpressionUUID->"43320cd8-06f9-4e49-9c66-b98b6c5dd202"],
-Cell[223235, 5233, 1979, 49, 95, "Print",ExpressionUUID->"cbeee728-f563-4d13-b8fa-034729756323"],
-Cell[225217, 5284, 506, 9, 36, "Print",ExpressionUUID->"9c8e8d5d-01ec-4a7d-a29c-95b98a8d2659"],
-Cell[225726, 5295, 1981, 49, 95, "Print",ExpressionUUID->"0d923655-dfed-4205-b598-eca253077808"],
-Cell[227710, 5346, 506, 9, 36, "Print",ExpressionUUID->"95aa93bc-13c9-4561-b843-2353a5e7c206"],
-Cell[228219, 5357, 1955, 49, 95, "Print",ExpressionUUID->"9dcaf3d1-37a6-41f3-a383-b3dc01a4e476"],
-Cell[230177, 5408, 508, 9, 36, "Print",ExpressionUUID->"43f0b4d5-0c9e-4b6f-89e8-8d9e58505564"],
-Cell[230688, 5419, 1949, 49, 95, "Print",ExpressionUUID->"3dc83ada-ae04-498a-811b-1db2503d76b5"],
-Cell[232640, 5470, 506, 9, 36, "Print",ExpressionUUID->"c26af364-9fa6-48be-a026-243c991d6a61"],
-Cell[233149, 5481, 1941, 49, 95, "Print",ExpressionUUID->"711c50d9-4422-43e8-be88-2eea95ef3a03"],
-Cell[235093, 5532, 506, 9, 36, "Print",ExpressionUUID->"c27982c9-32e3-4ace-8f03-f71f7e1cfb2c"],
-Cell[235602, 5543, 1941, 49, 95, "Print",ExpressionUUID->"b96f7f6e-a9c4-48fa-a733-9ca549a66802"],
-Cell[237546, 5594, 506, 9, 36, "Print",ExpressionUUID->"5a4c91c4-fece-46e0-a7ca-158d6150e019"],
-Cell[238055, 5605, 23545, 681, 780, "Print",ExpressionUUID->"e7d33d83-c839-4e11-85ed-b644a53edb1e"],
-Cell[261603, 6288, 1819, 35, 126, "Print",ExpressionUUID->"f9b5f4f9-34a2-4d6e-acda-77547961f91e"]
+Cell[192297, 4438, 1741, 45, 95, "Print",ExpressionUUID->"52a16db1-e088-4014-baa5-97f85c46a755"],
+Cell[194041, 4485, 180, 4, 36, "Print",ExpressionUUID->"009f1858-209c-463f-ae1a-d39329798568"],
+Cell[194224, 4491, 1689, 45, 95, "Print",ExpressionUUID->"d13fb09f-6c1d-4d18-b425-f22459f84616"],
+Cell[195916, 4538, 180, 4, 36, "Print",ExpressionUUID->"fb6d094f-9aba-4370-8f38-fa5e1c8f3fa4"],
+Cell[196099, 4544, 1701, 45, 95, "Print",ExpressionUUID->"a5f4ebc6-3def-437a-8367-6b29849a204a"],
+Cell[197803, 4591, 180, 4, 36, "Print",ExpressionUUID->"65723004-0fbd-41dc-a16f-ee318f6e92b5"],
+Cell[197986, 4597, 1643, 44, 95, "Print",ExpressionUUID->"c2165f03-cbb6-499a-a4b0-51095f865c35"],
+Cell[199632, 4643, 180, 4, 36, "Print",ExpressionUUID->"a0754dc3-6ae3-4cbb-829b-d331f46b577f"],
+Cell[199815, 4649, 1708, 45, 95, "Print",ExpressionUUID->"58f09063-6bfe-4b36-9375-08aa99ce29d1"],
+Cell[201526, 4696, 182, 4, 36, "Print",ExpressionUUID->"be138fb9-17d7-4e8a-9116-44d5e39b3943"],
+Cell[201711, 4702, 1683, 45, 95, "Print",ExpressionUUID->"c77848e3-393f-4414-8710-ede630d27cab"],
+Cell[203397, 4749, 182, 4, 36, "Print",ExpressionUUID->"fd4d129a-021d-406f-9701-39392205e9bc"],
+Cell[203582, 4755, 1671, 45, 95, "Print",ExpressionUUID->"cbc76f5f-35af-4a6b-9405-f751fcafb6de"],
+Cell[205256, 4802, 180, 4, 36, "Print",ExpressionUUID->"94ff2571-4b09-41d9-8d6e-3ff03c00ecbf"],
+Cell[205439, 4808, 1693, 45, 95, "Print",ExpressionUUID->"2708541c-1d90-41a7-b263-5f9860b1b1e6"],
+Cell[207135, 4855, 182, 4, 36, "Print",ExpressionUUID->"645c32ef-f5d2-4cae-a6b0-b5500e4ca641"],
+Cell[207320, 4861, 1737, 46, 95, "Print",ExpressionUUID->"609fe503-c037-4149-8935-8167843731f6"],
+Cell[209060, 4909, 182, 4, 36, "Print",ExpressionUUID->"91c51b04-2e71-461c-af19-45e35c17c7fa"],
+Cell[209245, 4915, 1735, 46, 95, "Print",ExpressionUUID->"08d75bca-dace-486d-9c47-5cb144e668d1"],
+Cell[210983, 4963, 182, 4, 36, "Print",ExpressionUUID->"866f6aa4-f36a-4059-b03b-9997ae70e791"],
+Cell[211168, 4969, 1727, 46, 95, "Print",ExpressionUUID->"af8ff1a4-99b0-4bd1-847d-2ccaa3bd5b87"],
+Cell[212898, 5017, 180, 4, 36, "Print",ExpressionUUID->"fa9adb6b-a363-4711-b885-a734c489753c"],
+Cell[213081, 5023, 1152, 31, 66, "Print",ExpressionUUID->"c23d774c-cfa2-468d-87da-25770a25b751"],
+Cell[214236, 5056, 180, 4, 36, "Print",ExpressionUUID->"59b8d344-2e1d-4478-9334-920c26de0534"],
+Cell[214419, 5062, 1639, 44, 95, "Print",ExpressionUUID->"a841aa1a-06f2-45a4-abc9-379b140254dd"],
+Cell[216061, 5108, 180, 4, 36, "Print",ExpressionUUID->"61ac11e1-995d-4c0b-a21b-3c3176b6dc04"],
+Cell[216244, 5114, 1653, 44, 95, "Print",ExpressionUUID->"12d3a914-b053-4058-a36e-9bbe358a84dd"],
+Cell[217900, 5160, 182, 4, 36, "Print",ExpressionUUID->"4f0de368-cb10-4efe-b1ef-6462b13992f2"],
+Cell[218085, 5166, 1654, 44, 95, "Print",ExpressionUUID->"415a4d18-451f-4418-b8a1-d59eef9e2571"],
+Cell[219742, 5212, 179, 4, 36, "Print",ExpressionUUID->"97f66c54-de7e-413c-a917-67feae06e95c"],
+Cell[219924, 5218, 1653, 44, 95, "Print",ExpressionUUID->"02a604d0-c7ec-4ab3-bc1e-b4a42efd92ce"],
+Cell[221580, 5264, 180, 4, 36, "Print",ExpressionUUID->"7c4c1ccd-9fce-46c0-bdd6-ae375608ad18"],
+Cell[221763, 5270, 1657, 44, 95, "Print",ExpressionUUID->"e4601270-da36-43fe-9cac-dc3d02ae852f"],
+Cell[223423, 5316, 180, 4, 36, "Print",ExpressionUUID->"006bb4fa-bea8-4829-b474-1075743f149c"],
+Cell[223606, 5322, 1627, 44, 95, "Print",ExpressionUUID->"e629cbae-f91b-47bd-82e3-a1eed67eacaf"],
+Cell[225236, 5368, 182, 4, 36, "Print",ExpressionUUID->"9075e613-f45f-4fc8-8f70-8f8ed7e817ca"],
+Cell[225421, 5374, 1623, 44, 95, "Print",ExpressionUUID->"4100d2aa-afe5-44bb-91e8-9909d3e3e412"],
+Cell[227047, 5420, 180, 4, 36, "Print",ExpressionUUID->"31e340f7-c20d-48bc-93b7-b8c9234e6417"],
+Cell[227230, 5426, 1615, 44, 95, "Print",ExpressionUUID->"d84cf891-461c-4180-a95b-36569aa8a106"],
+Cell[228848, 5472, 182, 4, 36, "Print",ExpressionUUID->"d12e9944-dbf0-458b-9f04-b18ccf5294db"],
+Cell[229033, 5478, 1615, 44, 95, "Print",ExpressionUUID->"3b1e98f1-ccbc-40b9-9608-43babb12088b"],
+Cell[230651, 5524, 179, 4, 36, "Print",ExpressionUUID->"ae165d36-ddf3-4b54-9b66-0b0bd6caaddd"],
+Cell[230833, 5530, 30185, 824, 1186, "Print",ExpressionUUID->"a4cc5b9e-2c6a-4c97-8c29-ec3194649142"],
+Cell[261021, 6356, 1489, 30, 126, "Print",ExpressionUUID->"af91a6c4-333e-4998-a563-8471106d3f91"]
 }, Open  ]]
 }, Open  ]]
 }
