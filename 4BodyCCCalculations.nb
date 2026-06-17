@@ -95,10 +95,10 @@ computations. \n1:  Since some constraints are on ",
     SqrtBox[
      RowBox[{"|", "mi", "|"}]], ">", "0"}], TraditionalForm]],ExpressionUUID->
   "3eba93b4-6614-4013-b9ee-5adc2531aeb2"],
- ", i=1, 2, 3, 4. Without lose of  generality, let m1=1.  Then  \[Mu]1=1, mi=\
+ ", i=1, 2, 3, 4. Without lose of  generality, let m1=1 and \[Sigma]i=1 or -1, i= 2, 3, 4..  Then  \[Mu]1=1, mi=\
 \[Sigma]i \[Mu]i^2, i= 2, 3, 4. \n2: Some constraints are not listed below.\n \
 3: As in the paper, the set {f=0} is denoted by \[ScriptCapitalV]_f, the set \
-f=9=0 is denoted by \[ScriptCapitalV] f \[ScriptCapitalV] g or \
+f=g=0 is denoted by \[ScriptCapitalV] f \[ScriptCapitalV] g or \
 \[ScriptCapitalV] f \[Intersection]\[ScriptCapitalV] g, and the set {f g=0} \
 is denoted by \[ScriptCapitalV] f \[Union]\[ScriptCapitalV] g. \n 4: Some \
 simplification: for instance, the set \[ScriptCapitalV]_IB[12, 34] is \
